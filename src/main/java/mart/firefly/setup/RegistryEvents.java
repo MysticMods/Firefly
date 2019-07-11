@@ -8,6 +8,7 @@ import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.item.FireflyJarItem;
 import mart.firefly.item.FireflyJuiceItem;
+import mart.firefly.item.scroll.*;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
@@ -73,6 +74,11 @@ public class RegistryEvents {
         event.getRegistry().register(new FireflyJuiceItem("firefly_juice_ice"));
         event.getRegistry().register(new FireflyJuiceItem("firefly_juice_void"));
         event.getRegistry().register(new FireflyJuiceItem("firefly_juice_earth"));
+        event.getRegistry().register(new DruidScrollItem("scroll_druid"));
+        event.getRegistry().register(new MinerScrollItem("scroll_miner"));
+        event.getRegistry().register(new SageScrollItem("scroll_sage"));
+        event.getRegistry().register(new ThunderScrollItem("scroll_thunder"));
+        event.getRegistry().register(new DemonScrollItem("scroll_demon"));
     }
 
     @SubscribeEvent

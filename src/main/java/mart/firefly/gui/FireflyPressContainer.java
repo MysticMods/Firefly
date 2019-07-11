@@ -1,6 +1,8 @@
 package mart.firefly.gui;
 
+import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -14,19 +16,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class FireflyPressContainer extends Container {
-
-    private TileEntity tileEntity;
+public class FireflyPressContainer extends BaseContainer {
 
     public FireflyPressContainer(int id, World world, BlockPos pos, PlayerInventory inventory) {
-        super(ModBlocks.FIREFLY_PRESS_CONTAINER, id);
-        this.tileEntity = world.getTileEntity(pos);
+        super(id, world, pos, inventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 37, 37));
-            addSlot(new SlotItemHandler(h, 1, 123, 37));
+            addSlot(new SlotItemHandler(h, 0, 80, 24));
         });
 
+        addButton(new ContainerButton(79, 58, 96, 75){
+            @Override
+            public void activate(BaseContainer container) {
+                if(tileEntity instanceof FireflyPressTile){
+                    ((FireflyPressTile)tileEntity).activate();
+                }
+            }
+        });
 
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
@@ -48,12 +54,12 @@ public class FireflyPressContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 0 || index == 1) {
-                if (!this.mergeItemStack(stack, 2, 38, true)) {
+                if (!this.mergeItemStack(stack, 1, 37, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (!this.mergeItemStack(stack, 0, 2, false)) {
+                if (!this.mergeItemStack(stack, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }
             }

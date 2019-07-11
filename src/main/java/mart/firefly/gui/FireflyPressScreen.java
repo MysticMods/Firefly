@@ -2,6 +2,7 @@ package mart.firefly.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import mart.firefly.Firefly;
+import mart.firefly.gui.button.ContainerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,9 +12,11 @@ import net.minecraft.util.text.ITextComponent;
 public class FireflyPressScreen extends ContainerScreen<FireflyPressContainer> {
 
     private ResourceLocation GUI = new ResourceLocation(Firefly.MODID, "textures/container/firefly_press.png");
+    public int x;
+    public int y;
 
-    public FireflyPressScreen(FireflyPressContainer p_i51105_1_, PlayerInventory p_i51105_2_, ITextComponent p_i51105_3_) {
-        super(p_i51105_1_, p_i51105_2_, p_i51105_3_);
+    public FireflyPressScreen(FireflyPressContainer containerIn, PlayerInventory inventoryIn, ITextComponent titleIn) {
+        super(containerIn, inventoryIn, titleIn);
     }
 
     @Override
@@ -21,6 +24,16 @@ public class FireflyPressScreen extends ContainerScreen<FireflyPressContainer> {
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    @Override
+    public boolean mouseClicked(double x, double y, int p_mouseClicked_5_) {
+        for(ContainerButton button : container.buttonList){
+            if(isPointInRegion(button.x, button.y, 18, 18, x, y)){
+                button.activate(container);
+            }
+        }
+        return super.mouseClicked(x, y, p_mouseClicked_5_);
     }
 
     @Override
