@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "on=false,water=false": { "model": "firefly:cauldron_off"},
+    "on=false,water=true": { "model": "firefly:cauldron_off_water"},
+    "on=true,water=false": { "model": "firefly:cauldron_on"},
+    "on=true,water=true": { "model": "firefly:cauldron_on_water"}
+  }
+}

@@ -1,0 +1,237 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "cauldron_ladle": "firefly:block/cauldron_ladle",
+        "cauldron_side": "firefly:block/cauldron_side_off",
+        "cauldron_top": "firefly:block/cauldron_top",
+        "cauldron_inside": "firefly:block/cauldron_inside",
+        "cauldron_underside_on": "firefly:block/cauldron_underside_off",
+        "cauldron_coals": "firefly:block/cauldron_coals_off",
+        "particle": "firefly:block/cauldron_inside"
+    },
+    "elements": [
+        {
+            "name": "Bottom",
+            "from": [ 1, 2, 1 ], 
+            "to": [ 15, 4, 15 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 1, 13, 15, 15 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 1, 13, 15, 15 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 1, 13, 15, 15 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 1, 13, 15, 15 ] },
+                "up": { "texture": "#cauldron_inside", "uv": [ 1, 1, 15, 15 ] },
+                "down": { "texture": "#cauldron_underside_on", "uv": [ 1, 1, 15, 15 ] }
+            }
+        },
+        {
+            "name": "MiddleW",
+            "from": [ 0, 4, 0 ], 
+            "to": [ 2, 14, 14 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 14, 3, 16, 13 ] },
+                "east": { "texture": "#cauldron_inside", "uv": [ 5, 0, 15, 14 ], "rotation": 90 },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 3, 14, 13 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 0, 0, 2, 14 ] },
+                "down": { "texture": "#cauldron_underside_on", "uv": [ 0, 2, 2, 16 ] }
+            }
+        },
+        {
+            "name": "MiddleS",
+            "from": [ 0, 4, 14 ], 
+            "to": [ 14, 14, 16 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_inside", "uv": [ 0, 1, 14, 11 ], "rotation": 180 },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 3, 14, 13 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 14, 3, 16, 13 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 0, 14, 14, 16 ] },
+                "down": { "texture": "#cauldron_underside_on", "uv": [ 2, 14, 16, 16 ], "rotation": 180 }
+            }
+        },
+        {
+            "name": "MiddleE",
+            "from": [ 14, 4, 2 ], 
+            "to": [ 16, 14, 16 ], 
+            "faces": {
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 3, 14, 13 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 14, 3, 16, 13 ] },
+                "west": { "texture": "#cauldron_inside", "uv": [ 0, 2, 10, 16 ], "rotation": 270 },
+                "up": { "texture": "#cauldron_top", "uv": [ 14, 2, 16, 16 ] },
+                "down": { "texture": "#cauldron_underside_on", "uv": [ 14, 0, 16, 14 ] }
+            }
+        },
+        {
+            "name": "MiddleN",
+            "from": [ 2, 4, 0 ], 
+            "to": [ 16, 14, 2 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 3, 14, 13 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 14, 3, 16, 13 ] },
+                "south": { "texture": "#cauldron_inside", "uv": [ 2, 5, 16, 15 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 2, 0, 16, 2 ] },
+                "down": { "texture": "#cauldron_underside_on", "uv": [ 0, 0, 14, 2 ], "rotation": 180 }
+            }
+        },
+        {
+            "name": "TopW",
+            "from": [ 1, 14, 1 ], 
+            "to": [ 3, 16, 13 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 13, 1, 15, 3 ] },
+                "east": { "texture": "#cauldron_inside", "uv": [ 0, 1, 2, 13 ], "rotation": 90 },
+                "west": { "texture": "#cauldron_side", "uv": [ 1, 1, 13, 3 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 1, 1, 3, 13 ] },
+                "down": { "texture": "#cauldron_inside", "uv": [ 7, 2, 9, 14 ] }
+            }
+        },
+        {
+            "name": "TopS",
+            "from": [ 1, 14, 13 ], 
+            "to": [ 13, 16, 15 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_inside", "uv": [ 1, 14, 13, 16 ], "rotation": 180 },
+                "south": { "texture": "#cauldron_side", "uv": [ 1, 1, 13, 3 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 13, 1, 15, 3 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 1, 13, 13, 15 ] },
+                "down": { "texture": "#cauldron_inside", "uv": [ 2, 7, 14, 9 ] }
+            }
+        },
+        {
+            "name": "TopE",
+            "from": [ 13, 14, 3 ], 
+            "to": [ 15, 16, 15 ], 
+            "faces": {
+                "east": { "texture": "#cauldron_side", "uv": [ 1, 1, 13, 3 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 13, 1, 15, 3 ] },
+                "west": { "texture": "#cauldron_inside", "uv": [ 14, 3, 16, 15 ], "rotation": 270 },
+                "up": { "texture": "#cauldron_top", "uv": [ 13, 3, 15, 15 ] },
+                "down": { "texture": "#cauldron_inside", "uv": [ 7, 2, 9, 14 ] }
+            }
+        },
+        {
+            "name": "TopN",
+            "from": [ 3, 14, 1 ], 
+            "to": [ 15, 16, 3 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 1, 1, 13, 3 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 13, 1, 15, 3 ] },
+                "south": { "texture": "#cauldron_inside", "uv": [ 3, 0, 15, 2 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 3, 1, 15, 3 ] },
+                "down": { "texture": "#cauldron_inside", "uv": [ 2, 7, 14, 9 ] }
+            }
+        },
+        {
+            "name": "Coals",
+            "from": [ 0.5, 0, 0.5 ], 
+            "to": [ 15.5, 1, 15.5 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_coals", "uv": [ 1, 0, 15, 1 ] },
+                "east": { "texture": "#cauldron_coals", "uv": [ 15, 1, 16, 15 ], "rotation": 90 },
+                "south": { "texture": "#cauldron_coals", "uv": [ 1, 15, 15, 16 ] },
+                "west": { "texture": "#cauldron_coals", "uv": [ 0, 15, 1, 1 ], "rotation": 270 },
+                "up": { "texture": "#cauldron_coals", "uv": [ 1, 1, 15, 15 ] },
+                "down": { "texture": "#cauldron_coals", "uv": [ 1, 1, 15, 15 ], "rotation": 180 }
+            }
+        },
+        {
+            "name": "LegSW",
+            "from": [ 2, 1, 12 ], 
+            "to": [ 4, 2, 14 ], 
+            "rotation": { "origin": [ 3.0, 1.0, 13.0 ], "axis": "y", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 4, 15, 6, 16 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 10, 15, 12, 16 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 8, 15, 10, 16 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 6, 15, 8, 16 ] }
+            }
+        },
+        {
+            "name": "LegSE",
+            "from": [ 12, 1, 12 ], 
+            "to": [ 14, 2, 14 ], 
+            "rotation": { "origin": [ 13.0, 1.0, 13.0 ], "axis": "y", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 10, 15, 12, 16 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 8, 15, 10, 16 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 6, 15, 8, 16 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 4, 15, 6, 16 ] }
+            }
+        },
+        {
+            "name": "LegNE",
+            "from": [ 12, 1, 2 ], 
+            "to": [ 14, 2, 4 ], 
+            "rotation": { "origin": [ 13.0, 1.0, 3.0 ], "axis": "y", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 8, 15, 10, 16 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 6, 15, 8, 16 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 4, 15, 6, 16 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 10, 15, 12, 16 ] }
+            }
+        },
+        {
+            "name": "LegNW",
+            "from": [ 2, 1, 2 ], 
+            "to": [ 4, 2, 4 ], 
+            "rotation": { "origin": [ 3.0, 1.0, 3.0 ], "axis": "y", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 6, 15, 8, 16 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 4, 15, 6, 16 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 10, 15, 12, 16 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 8, 15, 10, 16 ] }
+            }
+        },
+        {
+            "name": "SpoonRod",
+            "from": [ 5, 8.7, 7 ], 
+            "to": [ 7, 20.7, 9 ], 
+            "rotation": { "origin": [ 6.0, 7.0, 8.0 ], "axis": "x", "angle": -22.5 },
+            "faces": {
+                "north": { "texture": "#cauldron_ladle", "uv": [ 6, 0, 8, 12 ] },
+                "east": { "texture": "#cauldron_ladle", "uv": [ 4, 0, 6, 12 ] },
+                "south": { "texture": "#cauldron_ladle", "uv": [ 2, 0, 4, 12 ] },
+                "west": { "texture": "#cauldron_ladle", "uv": [ 0, 0, 2, 12 ] },
+                "up": { "texture": "#cauldron_ladle", "uv": [ 8, 0, 10, 2 ] }
+            }
+        },
+        {
+            "name": "Spoon",
+            "from": [ 4, 4.7, 6 ], 
+            "to": [ 8, 8.7, 9 ], 
+            "rotation": { "origin": [ 6.0, 7.0, 8.0 ], "axis": "x", "angle": -22.5 },
+            "faces": {
+                "north": { "texture": "#cauldron_ladle", "uv": [ 10, 12, 14, 16 ] },
+                "east": { "texture": "#cauldron_ladle", "uv": [ 7, 12, 10, 16 ] },
+                "south": { "texture": "#cauldron_ladle", "uv": [ 3, 12, 7, 16 ] },
+                "west": { "texture": "#cauldron_ladle", "uv": [ 0, 12, 3, 16 ] },
+                "up": { "texture": "#cauldron_ladle", "uv": [ 8, 9, 12, 12 ] },
+                "down": { "texture": "#cauldron_ladle", "uv": [ 12, 9, 16, 12 ] }
+            }
+        },
+        {
+            "name": "HandleW",
+            "from": [ 14, 14.4, 5 ], 
+            "to": [ 16, 16.4, 11 ], 
+            "rotation": { "origin": [ 15.0, 15.3, 8.0 ], "axis": "z", "angle": 22.5 },
+            "faces": {
+                "north": { "texture": "#cauldron_top", "uv": [ 7, 1, 9, 3 ] },
+                "east": { "texture": "#cauldron_top", "uv": [ 5, 1, 11, 3 ] },
+                "south": { "texture": "#cauldron_top", "uv": [ 7, 13, 9, 15 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 13, 4, 15, 10 ], "rotation": 180 },
+                "down": { "texture": "#cauldron_inside", "uv": [ 13, 5, 15, 11 ] }
+            }
+        },
+        {
+            "name": "HandleE",
+            "from": [ 0, 14.4, 5 ], 
+            "to": [ 2, 16.4, 11 ], 
+            "rotation": { "origin": [ 1.0, 15.3, 8.0 ], "axis": "z", "angle": -22.5 },
+            "faces": {
+                "north": { "texture": "#cauldron_top", "uv": [ 7, 1, 9, 3 ] },
+                "south": { "texture": "#cauldron_top", "uv": [ 7, 13, 9, 15 ] },
+                "west": { "texture": "#cauldron_top", "uv": [ 5, 1, 11, 3 ] },
+                "up": { "texture": "#cauldron_top", "uv": [ 1, 6, 3, 12 ] },
+                "down": { "texture": "#cauldron_inside", "uv": [ 1, 5, 3, 11 ] }
+            }
+        }
+    ]
+}

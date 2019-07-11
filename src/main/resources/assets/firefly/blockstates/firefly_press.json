@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "firefly:firefly_press",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "": [
+      {}
+    ]
+  }
+}
