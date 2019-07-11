@@ -1,6 +1,7 @@
 package mart.firefly.tile;
 
 import mart.firefly.gui.FireflyPressContainer;
+import mart.firefly.item.FireflyJarItem;
 import mart.firefly.registry.ModBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -65,7 +66,12 @@ public class FireflyPressTile extends TileEntity implements ITickableTileEntity,
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return stack.getItem() == Items.DIRT;
+                if(slot == 0){
+                    return stack.getItem() instanceof FireflyJarItem;
+                }
+                else{
+                    return false;
+                }
             }
 
             @Nonnull

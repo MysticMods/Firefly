@@ -32,6 +32,7 @@ public class FireflyPressBlock extends Block implements ITile {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof INamedContainerProvider){
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                return true;
             }
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

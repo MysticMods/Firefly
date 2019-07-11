@@ -3,8 +3,10 @@ package mart.firefly.setup;
 import mart.firefly.Firefly;
 import mart.firefly.block.FireflyPressBlock;
 import mart.firefly.block.ITile;
+import mart.firefly.entity.FireflyEntity;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
+import mart.firefly.item.FireflyJarItem;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
@@ -50,10 +52,19 @@ public class RegistryEvents {
     }
 
     @SubscribeEvent
-    public static void onItemBlockRegistry(final RegistryEvent.Register<Item> event){
+    public static void onItemRegistry(final RegistryEvent.Register<Item> event){
         for(Block b : blocks){
             event.getRegistry().register(new BlockItem(b, new Item.Properties().group(Firefly.GROUP)).setRegistryName(b.getRegistryName()));
         }
+
+        event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(Firefly.GROUP)).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_jar")));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_fairy", FireflyEntity.FireflyType.FAIRY));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_forest", FireflyEntity.FireflyType.FOREST));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_mountain", FireflyEntity.FireflyType.MOUNTAIN));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_demon", FireflyEntity.FireflyType.DEMON));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_ice", FireflyEntity.FireflyType.ICE));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_void", FireflyEntity.FireflyType.VOID));
+        event.getRegistry().register(new FireflyJarItem("firefly_jar_earth", FireflyEntity.FireflyType.EARTH));
     }
 
     @SubscribeEvent
