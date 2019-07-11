@@ -7,6 +7,7 @@ import mart.firefly.entity.FireflyEntity;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.item.FireflyJarItem;
+import mart.firefly.item.FireflyJuiceItem;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
@@ -65,6 +66,13 @@ public class RegistryEvents {
         event.getRegistry().register(new FireflyJarItem("firefly_jar_ice", FireflyEntity.FireflyType.ICE));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_void", FireflyEntity.FireflyType.VOID));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_earth", FireflyEntity.FireflyType.EARTH));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_fairy"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_forest"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_mountain"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_demon"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_ice"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_void"));
+        event.getRegistry().register(new FireflyJuiceItem("firefly_juice_earth"));
     }
 
     @SubscribeEvent
