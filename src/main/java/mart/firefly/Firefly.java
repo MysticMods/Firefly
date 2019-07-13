@@ -3,17 +3,21 @@ package mart.firefly;
 import epicsquid.mysticallib.setup.ClientProxy;
 import epicsquid.mysticallib.setup.IProxy;
 import epicsquid.mysticallib.setup.ServerProxy;
+import mart.firefly.network.PressActivatePacket;
 import mart.firefly.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("firefly")
@@ -29,6 +33,15 @@ public class Firefly {
 
     public static final String MODID = "firefly";
 
+    public static final String CHANNEL = MODID;
+    private static final String PROTOCOL_VERSION = "1.0";
+    public static SimpleChannel channel = NetworkRegistry.ChannelBuilder
+            .named(new ResourceLocation(MODID, CHANNEL))
+            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
+            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
+            .networkProtocolVersion(() -> PROTOCOL_VERSION)
+            .simpleChannel();
+
     // Sided setup
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
@@ -36,7 +49,6 @@ public class Firefly {
     public static ModSetup setup = new ModSetup();
 
     public Firefly() {
+
     }
-
-
 }

@@ -1,6 +1,8 @@
 package mart.firefly.gui;
 
+import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
+import mart.firefly.network.PressActivatePacket;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +15,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -29,7 +32,8 @@ public class FireflyPressContainer extends BaseContainer {
             @Override
             public void activate(BaseContainer container) {
                 if(tileEntity instanceof FireflyPressTile){
-                    ((FireflyPressTile)tileEntity).activate();
+                    PressActivatePacket message = new PressActivatePacket(tileEntity.getPos());
+                    Firefly.channel.sendToServer(message);
                 }
             }
         });
