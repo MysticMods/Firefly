@@ -1,12 +1,17 @@
 package mart.firefly.tile;
 
 import mart.firefly.gui.ScrollTableContainer;
+import mart.firefly.item.FireflyJuiceItem;
+import mart.firefly.item.scroll.ScrollItem;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.registry.ModRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -36,7 +41,32 @@ public class ScrollTableTile extends TileEntity implements ITickableTileEntity, 
     }
 
     public void activate(){
+        handler.ifPresent(h ->{
+            if(h.getStackInSlot(2) != ItemStack.EMPTY){
+                return;
+            }
+            ItemStack juice = h.getStackInSlot(0);
+            ItemStack paper = h.getStackInSlot(1);
+            if(juice == ItemStack.EMPTY || paper == ItemStack.EMPTY){
+                return;
+            }
 
+            Item outputItem = ModRecipes.getScrollRecipeOutput(juice.getItem());
+            if(outputItem == null){
+                return;
+            }
+
+            int level = juice.getCount();
+            if(level > 10){
+                level = 10;
+            }
+
+            juice.shrink(level);
+            paper.shrink(1);
+            ItemStack outputItemStack = new ItemStack(outputItem);
+            ScrollItem.setScrollLevel(outputItemStack, level);
+            h.setStackInSlot(2, outputItemStack);
+        });
 
     }
 
@@ -70,7 +100,13 @@ public class ScrollTableTile extends TileEntity implements ITickableTileEntity, 
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return true;
+                if(slot == 0){
+                    return stack.getItem() instanceof FireflyJuiceItem;
+                }
+                else if(slot == 1){
+                    return stack.getItem() == Items.PAPER;
+                }
+                return false;
             }
 
             @Nonnull

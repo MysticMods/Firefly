@@ -2,7 +2,7 @@ package mart.firefly.gui;
 
 import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
-import mart.firefly.network.PressActivatePacket;
+import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +30,7 @@ public class ScrollTableContainer extends BaseContainer {
             @Override
             public void activate(BaseContainer container) {
                 if(tileEntity instanceof ScrollTableTile){
-                    PressActivatePacket message = new PressActivatePacket(tileEntity.getPos());
+                    ScrollTablePacket message = new ScrollTablePacket(tileEntity.getPos());
                     Firefly.channel.sendToServer(message);
                 }
             }
@@ -47,7 +47,7 @@ public class ScrollTableContainer extends BaseContainer {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 0 || index == 1) {
+            if (index < 3) {
                 if (!this.mergeItemStack(stack, 3, 39, true)) {
                     return ItemStack.EMPTY;
                 }

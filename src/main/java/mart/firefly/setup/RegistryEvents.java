@@ -13,6 +13,7 @@ import mart.firefly.item.FireflyJarItem;
 import mart.firefly.item.FireflyJuiceItem;
 import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
+import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.registry.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
@@ -46,6 +47,8 @@ public class RegistryEvents {
 
         int messageNumber = 0;
         Firefly.channel.registerMessage(messageNumber++, PressActivatePacket.class, PressActivatePacket::encode, PressActivatePacket::new, PressActivatePacket::handle);
+        Firefly.channel.registerMessage(messageNumber++, ScrollTablePacket.class, ScrollTablePacket::encode, ScrollTablePacket::new, ScrollTablePacket::handle);
+
     }
 
     @SubscribeEvent
