@@ -1,9 +1,9 @@
 package mart.firefly.block;
 
-import net.minecraft.tileentity.TileEntity;
+import java.util.function.Supplier;
 
-public interface ITile {
+public interface ITile<T> {
 
-    TileEntity getTile();
+    Supplier<T> getTile();
 
 }

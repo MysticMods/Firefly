@@ -3,15 +3,17 @@ package mart.firefly.setup;
 import mart.firefly.Firefly;
 import mart.firefly.block.FireflyPressBlock;
 import mart.firefly.block.ITile;
+import mart.firefly.block.ScrollTableBlock;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
+import mart.firefly.gui.ScrollTableContainer;
+import mart.firefly.gui.ScrollTableScreen;
 import mart.firefly.item.FireflyJarItem;
 import mart.firefly.item.FireflyJuiceItem;
 import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.registry.ModBlocks;
-import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
@@ -29,7 +31,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@SuppressWarnings("unchecked")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryEvents {
 
@@ -47,11 +51,14 @@ public class RegistryEvents {
     @SubscribeEvent
     public static void setupClient(final FMLClientSetupEvent event){
         ScreenManager.registerFactory(ModBlocks.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
+        ScreenManager.registerFactory(ModBlocks.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);
     }
 
     @SubscribeEvent
     public static void onBlockRegistry(final RegistryEvent.Register<Block> event){
         blocks.add(new FireflyPressBlock());
+        blocks.add(new ScrollTableBlock());
+
         for(Block b : blocks){
             event.getRegistry().register(b);
         }
@@ -89,8 +96,8 @@ public class RegistryEvents {
     public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
         for(Block block : blocks){
             if(block instanceof ITile){
-                event.getRegistry().register(TileEntityType.Builder.create(FireflyPressTile::new, block).build(null)
-                        .setRegistryName(new ResourceLocation(Firefly.MODID, block.getRegistryName().getPath() + "_tile")));
+                event.getRegistry().register((TileEntityType<?>) TileEntityType.Builder.create(((ITile) block).getTile(), block).build(null)
+                        .setRegistryName(new ResourceLocation(Firefly.MODID, Objects.requireNonNull(block.getRegistryName()).getPath() + "_tile")));
             }
         }
     }
@@ -101,6 +108,11 @@ public class RegistryEvents {
             BlockPos pos = data.readBlockPos();
             return new FireflyPressContainer(windowId, Firefly.proxy.getClientWorld(), pos, inv);
         }).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_press_container")));
+
+        event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) ->{
+            BlockPos pos = data.readBlockPos();
+            return new ScrollTableContainer(windowId, Firefly.proxy.getClientWorld(), pos, inv);
+        }).setRegistryName(new ResourceLocation(Firefly.MODID, "scroll_table_container")));
     }
 
 }

@@ -15,16 +15,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class FireflyPressContainer extends BaseContainer {
+public class ScrollTableContainer extends BaseContainer {
 
-    public FireflyPressContainer(int id, World world, BlockPos pos, PlayerInventory inventory) {
-        super(ModBlocks.FIREFLY_PRESS_CONTAINER, id, world, pos, inventory);
+    public ScrollTableContainer(int id, World world, BlockPos pos, PlayerInventory inventory) {
+        super(ModBlocks.SCROLL_TABLE_CONTAINER, id, world, pos, inventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 80, 24));
+            addSlot(new SlotItemHandler(h, 0, 31, 23));
+            addSlot(new SlotItemHandler(h, 1, 31, 43));
+            addSlot(new SlotItemHandler(h, 2, 130, 34));
         });
 
-        addButton(new ContainerButton(79, 58){
+        addButton(new ContainerButton(79, 33){
             @Override
             public void activate(BaseContainer container) {
                 if(tileEntity instanceof ScrollTableTile){
@@ -46,12 +48,12 @@ public class FireflyPressContainer extends BaseContainer {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 0 || index == 1) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+                if (!this.mergeItemStack(stack, 3, 39, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (!this.mergeItemStack(stack, 0, 1, false)) {
+                if (!this.mergeItemStack(stack, 0, 2, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -74,6 +76,6 @@ public class FireflyPressContainer extends BaseContainer {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.FIREFLY_PRESS);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.SCROLL_TABLE);
     }
 }

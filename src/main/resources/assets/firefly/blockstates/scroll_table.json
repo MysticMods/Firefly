@@ -5,8 +5,20 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "": [
-      {}
-    ]
+    "facing=south": {
+      "model": "firefly:scroll_table",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "firefly:scroll_table"
+    },
+    "facing=east": {
+      "model": "firefly:scroll_table",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "firefly:scroll_table",
+      "y": 270
+    }
   }
 }
