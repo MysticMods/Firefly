@@ -26,7 +26,7 @@ public class FireflyJarItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if(!worldIn.isRemote && playerIn.isSneaking()){
-            Entity firefly = ModEntities.FIREFLY_ENTITY.spawn(worldIn, ItemStack.EMPTY, playerIn, playerIn.getPosition(), SpawnReason.TRIGGERED, false, false);
+            Entity firefly = ModEntities.FIREFLY.spawn(worldIn, ItemStack.EMPTY, playerIn, playerIn.getPosition(), SpawnReason.TRIGGERED, false, false);
             firefly.getDataManager().set(FireflyEntity.TYPE, type.name());
             if(!playerIn.abilities.isCreativeMode){
                 playerIn.getHeldItem(handIn).shrink(1);

@@ -5,6 +5,7 @@ import mart.firefly.block.FireflyPressBlock;
 import mart.firefly.block.ITile;
 import mart.firefly.block.ScrollTableBlock;
 import mart.firefly.entity.FireflyEntity;
+import mart.firefly.entity.render.RenderFirefly;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.gui.ScrollTableContainer;
@@ -15,8 +16,11 @@ import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.util.ColorUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -26,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -44,6 +49,7 @@ public class RegistryEvents {
     public static void setup(final FMLCommonSetupEvent event) {
         Firefly.setup.init();
         Firefly.proxy.init();
+        ColorUtil.init();
 
         int messageNumber = 0;
         Firefly.channel.registerMessage(messageNumber++, PressActivatePacket.class, PressActivatePacket::encode, PressActivatePacket::new, PressActivatePacket::handle);
@@ -116,6 +122,15 @@ public class RegistryEvents {
             BlockPos pos = data.readBlockPos();
             return new ScrollTableContainer(windowId, Firefly.proxy.getClientWorld(), pos, inv);
         }).setRegistryName(new ResourceLocation(Firefly.MODID, "scroll_table_container")));
+    }
+
+    @SubscribeEvent
+    public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event)
+    {
+        event.getRegistry().register(EntityType.Builder.create(FireflyEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F).build("firefly")
+                .setRegistryName(new ResourceLocation(Firefly.MODID, "firefly")));
+
+        RenderingRegistry.registerEntityRenderingHandler(FireflyEntity.class, RenderFirefly::new);
     }
 
 }

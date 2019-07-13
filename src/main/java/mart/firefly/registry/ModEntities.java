@@ -7,6 +7,6 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder("firefly")
 public class ModEntities {
 
-    public static final EntityType<FireflyEntity> FIREFLY_ENTITY = null;
+    public static final EntityType<FireflyEntity> FIREFLY = null;
 
 }

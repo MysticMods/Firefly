@@ -1,11 +1,12 @@
 package mart.firefly.entity;
 
-import mart.firefly.Firefly;
 import mart.firefly.registry.ModEntities;
 import mart.firefly.registry.ModItems;
 import mart.firefly.util.ColorUtil;
 import mart.firefly.util.RgbColor;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -13,20 +14,16 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class FireflyEntity extends FlyingEntity {
 
     public static final DataParameter<String> TYPE = EntityDataManager.createKey(FireflyEntity.class, DataSerializers.STRING);
 
-    public FireflyEntity(World worldIn) {
-        super(ModEntities.FIREFLY_ENTITY, worldIn);
+    public FireflyEntity(EntityType<? extends FlyingEntity> type, World worldIn) {
+        super(type, worldIn);
     }
 
     @Override
@@ -56,7 +53,9 @@ public class FireflyEntity extends FlyingEntity {
         return distance < 65;
     }
 
-
+    public FireflyType getFireflyType(){
+        return FireflyType.valueOf(getDataManager().get(TYPE));
+    }
 
     @Override
     protected boolean processInteract(PlayerEntity player, Hand hand) {
