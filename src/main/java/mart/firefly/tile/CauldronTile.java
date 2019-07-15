@@ -51,11 +51,11 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
                     getPos().getX() + 1,getPos().getY() + 2,getPos().getZ() + 1)
             );
 
-            System.out.println(items.size());
+            //System.out.println(items.size());
 
             if(items.size() > 0){
                 for(ItemEntity entity : items){
-                    entity.get
+
                 }
             }
         }

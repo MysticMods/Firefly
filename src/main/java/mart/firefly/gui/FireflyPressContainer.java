@@ -5,7 +5,6 @@ import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
-import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;

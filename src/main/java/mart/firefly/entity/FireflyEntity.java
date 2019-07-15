@@ -1,12 +1,10 @@
 package mart.firefly.entity;
 
-import mart.firefly.registry.ModEntities;
 import mart.firefly.registry.ModItems;
 import mart.firefly.util.ColorUtil;
 import mart.firefly.util.RgbColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
