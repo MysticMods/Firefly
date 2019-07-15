@@ -40,8 +40,6 @@ public class FireflyEntity extends FlyingEntity {
         super.tick();
     }
 
-
-
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean isInRangeToRender3d(double x, double y, double z) {

@@ -4,6 +4,7 @@ import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.tile.FireflyPressTile;
 import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -27,7 +28,7 @@ public class FireflyPressContainer extends BaseContainer {
         addButton(new ContainerButton(79, 58){
             @Override
             public void activate(BaseContainer container) {
-                if(tileEntity instanceof ScrollTableTile){
+                if(tileEntity instanceof FireflyPressTile){
                     PressActivatePacket message = new PressActivatePacket(tileEntity.getPos());
                     Firefly.channel.sendToServer(message);
                 }

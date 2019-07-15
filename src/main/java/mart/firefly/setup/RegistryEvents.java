@@ -1,6 +1,7 @@
 package mart.firefly.setup;
 
 import mart.firefly.Firefly;
+import mart.firefly.block.CauldronBlock;
 import mart.firefly.block.FireflyPressBlock;
 import mart.firefly.block.ITile;
 import mart.firefly.block.ScrollTableBlock;
@@ -67,6 +68,7 @@ public class RegistryEvents {
     public static void onBlockRegistry(final RegistryEvent.Register<Block> event){
         blocks.add(new FireflyPressBlock());
         blocks.add(new ScrollTableBlock());
+        blocks.add(new CauldronBlock());
 
         for(Block b : blocks){
             event.getRegistry().register(b);

@@ -23,7 +23,7 @@ public class ModRecipes {
         scrollRecipes.put(ModItems.FIREFLY_JUICE_FOREST, ModItems.SCROLL_DRUID);
         scrollRecipes.put(ModItems.FIREFLY_JUICE_EARTH, ModItems.SCROLL_MINER);
         scrollRecipes.put(ModItems.FIREFLY_JUICE_MOUNTAIN, ModItems.SCROLL_THUNDER);
-        scrollRecipes.put(ModItems.FIREFLY_JUICE_DEMON, ModItems.FIREFLY_JUICE_DEMON);
+        scrollRecipes.put(ModItems.FIREFLY_JUICE_DEMON, ModItems.SCROLL_DEMON);
     }
 
     public static Item getPressOutput(Item input){
