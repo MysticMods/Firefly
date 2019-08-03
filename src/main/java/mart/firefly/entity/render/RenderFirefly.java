@@ -1,8 +1,6 @@
 package mart.firefly.entity.render;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import epicsquid.mysticallib.particle.ParticleRenderer;
-import epicsquid.mysticallib.setup.ClientProxy;
 import mart.firefly.Firefly;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.util.ColorUtil;
@@ -65,8 +63,6 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
         GlStateManager.disableBlend();
         GlStateManager.enableAlphaTest();
         GlStateManager.popMatrix();
-
-        ClientProxy.particleRenderer.spawnParticle(entity.world, "particle_flame", x, y, z, x + 1, y + 1, z + 1, 100d, 255, 255, 255, 1, 1);
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
