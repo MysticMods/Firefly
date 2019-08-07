@@ -1,17 +1,21 @@
 package mart.firefly.entity.render;
 
+import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 import mart.firefly.Firefly;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.util.ColorUtil;
 import mart.firefly.util.RgbColor;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GLX11;
+import org.lwjgl.opengl.GLX12;
 
 import javax.annotation.Nullable;
 
@@ -49,6 +53,7 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
         bindTexture(new ResourceLocation(Firefly.MODID, "textures/particle/particle_glow.png"));
 
 
+
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -56,6 +61,8 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
         buffer.pos(0.5D / 4, 0.0D, 0.0D).tex(1D, 0.0D).endVertex();
         buffer.pos(0.5D / 4, 1.0D / 4, 0.0D).tex(1D, 1D).endVertex();
         buffer.pos(-0.5D / 4, 1.0D / 4, 0.0D).tex(0.0D, 1D).endVertex();
+        GLX.lastBrightnessX = 240;
+        GLX.lastBrightnessY = 240;
         tessellator.draw();
 
 
