@@ -39,7 +39,7 @@ public class Firefly {
             .simpleChannel();
 
     // Sided setup
-    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+//    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     // Side agnostic setup
     public static ModSetup setup = new ModSetup();
