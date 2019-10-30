@@ -19,6 +19,7 @@ import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.registry.ModBlocks;
 import mart.firefly.util.ColorUtil;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -49,7 +50,6 @@ public class RegistryEvents {
     @SubscribeEvent
     public static void setup(final FMLCommonSetupEvent event) {
         Firefly.setup.init();
-        Firefly.proxy.init();
         ColorUtil.init();
 
         int messageNumber = 0;
@@ -117,12 +117,12 @@ public class RegistryEvents {
     public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event){
         event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) ->{
             BlockPos pos = data.readBlockPos();
-            return new FireflyPressContainer(windowId, Firefly.proxy.getClientWorld(), pos, inv);
+            return new FireflyPressContainer(windowId, Minecraft.getInstance().world, pos, inv);
         }).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_press_container")));
 
         event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) ->{
             BlockPos pos = data.readBlockPos();
-            return new ScrollTableContainer(windowId, Firefly.proxy.getClientWorld(), pos, inv);
+            return new ScrollTableContainer(windowId, Minecraft.getInstance().world, pos, inv);
         }).setRegistryName(new ResourceLocation(Firefly.MODID, "scroll_table_container")));
     }
 
