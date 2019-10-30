@@ -21,6 +21,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 public class Firefly {
 
     public static final ItemGroup GROUP = new ItemGroup(12, "firefly") {
+        @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
             return new ItemStack(Items.GLASS_BOTTLE);
