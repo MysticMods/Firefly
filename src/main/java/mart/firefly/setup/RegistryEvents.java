@@ -17,7 +17,9 @@ import mart.firefly.item.FireflyPotion;
 import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.network.ScrollTablePacket;
+import mart.firefly.potion.*;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.registry.ModEffects;
 import mart.firefly.util.ColorUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -27,6 +29,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -140,6 +145,28 @@ public class RegistryEvents {
                 .setRegistryName(new ResourceLocation(Firefly.MODID, "firefly")));
 
         RenderingRegistry.registerEntityRenderingHandler(FireflyEntity.class, RenderFirefly::new);
+    }
+
+    @SubscribeEvent
+    public static void registerPotion(final RegistryEvent.Register<Potion> event)
+    {
+        event.getRegistry().register(new PotionWisdomDraught());
+        event.getRegistry().register(new PotionLiquidLuck());
+        event.getRegistry().register(new PotionMandragora());
+        event.getRegistry().register(new PotionDruidsDelight());
+        event.getRegistry().register(new PotionDragonsWrath());
+        event.getRegistry().register(new PotionBloodfury());
+    }
+
+    @SubscribeEvent
+    public static void registerEffect(final RegistryEvent.Register<Effect> event)
+    {
+        event.getRegistry().register(ModEffects.EFFECT_BLOODFURY = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_bloodfury"));
+        event.getRegistry().register(ModEffects.EFFECT_WISDOM_DRAUGHT = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_wisdom_draught"));
+        event.getRegistry().register(ModEffects.EFFECT_LIQUID_LUCK = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_liquid_luck"));
+        event.getRegistry().register(ModEffects.EFFECT_MANDRAGORA = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_mandroga"));
+        event.getRegistry().register(ModEffects.EFFECT_DRUIDS_DELIGHT = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_druids_delight"));
+        event.getRegistry().register(ModEffects.EFFECT_DRAGONS_WRATH = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_dragons_wrath"));
     }
 
 }
