@@ -1,6 +1,7 @@
 package mart.firefly.item;
 
 import mart.firefly.Firefly;
+import mart.firefly.registry.ModEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -22,9 +22,16 @@ import java.util.List;
 
 public class FireflyPotion extends Item {
 
-    public FireflyPotion(String name) {
+    public enum PotionType {
+        BLOODFURY, DRAGONS_WRATH, DRUIDS_DELIGHT, LIQUID_LUCK, MANDRAGORA, WISDOM_DRAUGHT
+    }
+
+    private PotionType type;
+
+    public FireflyPotion(String name, PotionType type) {
         super(new Item.Properties().group(Firefly.GROUP).maxStackSize(1));
         setRegistryName(name);
+        this.type = type;
     }
 
     @Override
@@ -39,13 +46,37 @@ public class FireflyPotion extends Item {
         }
 
         if (!world.isRemote) {
-            List<EffectInstance> effectList = PotionUtils.getEffectsFromStack(stack);
+            List<EffectInstance> effectList;
+
+            switch (type){
+                case BLOODFURY:
+                    effectList = ModEffects.POTION_BLOODFURY.getEffects();
+                    break;
+                case MANDRAGORA:
+                    effectList = ModEffects.POTION_MANDRAGORA.getEffects();
+                    break;
+                case LIQUID_LUCK:
+                    effectList = ModEffects.POTION_LIQUID_LUCK.getEffects();
+                    break;
+                case DRAGONS_WRATH:
+                    effectList = ModEffects.POTION_DRAGONS_WRATH.getEffects();
+                    break;
+                case DRUIDS_DELIGHT:
+                    effectList = ModEffects.POTION_DRUIDS_DELIGHT.getEffects();
+                    break;
+                case WISDOM_DRAUGHT:
+                    effectList = ModEffects.POTION_WISDOM_DRAUGHT.getEffects();
+                    break;
+                default:
+                    effectList = ModEffects.POTION_DRUIDS_DELIGHT.getEffects();
+            }
+
             Iterator iterator = effectList.iterator();
 
             while(iterator.hasNext()) {
                 EffectInstance effectInstance = (EffectInstance)iterator.next();
                 if (effectInstance.getPotion().isInstant()) {
-                    effectInstance.getPotion().affectEntity(playerEntity, playerEntity, entity, effectInstance.getAmplifier(), 1.0D);
+                    effectInstance.getPotion().affectEntity(playerEntity, playerEntity, entity, effectInstance.getAmplifier(), 100.0D);
                 } else {
                     entity.addPotionEffect(new EffectInstance(effectInstance));
                 }
