@@ -29,7 +29,7 @@ public class FireflyEntity extends CreatureEntity{
     public FireflyEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
         this.navigator = (FlyingPathNavigator) this.createNavigator(worldIn);
-        this.moveController = new FireflyEntity.MoveHelperController(this);
+        this.moveController = new MovementController (this);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class FireflyEntity extends CreatureEntity{
 
     @Override
     protected void updateFallState(double p_184231_1_, boolean p_184231_3_, BlockState p_184231_4_, BlockPos p_184231_5_) {
-        
+
     }
 
     ///Movement
@@ -152,32 +152,6 @@ public class FireflyEntity extends CreatureEntity{
     @Override
     protected PathNavigator createNavigator(World worldIn) {
         return new FlyingPathNavigator(this, worldIn);
-    }
-
-    static class FlyGoal extends RandomFlyingGoal {
-
-        public FlyGoal(FireflyEntity fireflyEntity) {
-            super(fireflyEntity, 0.8D, 40);
-        }
-
-        @Override
-        public boolean shouldExecute() {
-            return super.shouldExecute();
-        }
-    }
-
-    static class MoveHelperController extends MovementController {
-        private final FireflyEntity fireflyEntity;
-
-        MoveHelperController(FireflyEntity fireflyEntity) {
-            super(fireflyEntity);
-            this.fireflyEntity = fireflyEntity;
-        }
-
-        @Override
-        public void tick() {
-            super.tick();
-        }
     }
 
     @Override
