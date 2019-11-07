@@ -2,12 +2,9 @@ package mart.firefly.entity;
 
 import mart.firefly.entity.goals.RandomFlyingGoal;
 import mart.firefly.registry.ModItems;
-import mart.firefly.util.ColorUtil;
-import mart.firefly.util.RgbColor;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,8 +15,7 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -39,8 +35,7 @@ public class FireflyEntity extends CreatureEntity{
     @Override
     protected void registerGoals()
     {
-        super.registerGoals();
-        this.goalSelector.addGoal(1, new FireflyEntity.FlyGoal(this));
+        this.goalSelector.addGoal(1, new RandomFlyingGoal(this,0.8D, 40));
     }
 
     @Override
@@ -53,7 +48,6 @@ public class FireflyEntity extends CreatureEntity{
     @Override
     public void tick() {
         FireflyType type = FireflyType.valueOf(getDataManager().get(TYPE));
-        RgbColor color = ColorUtil.fireflyColors.get(type);
         super.tick();
     }
 
@@ -144,22 +138,20 @@ public class FireflyEntity extends CreatureEntity{
         return true;
     }
 
+    @Override
+    public void fall(float distance, float damageMultiplier) {
+    }
+
+    @Override
+    protected void updateFallState(double p_184231_1_, boolean p_184231_3_, BlockState p_184231_4_, BlockPos p_184231_5_) {
+        
+    }
+
     ///Movement
 
     @Override
     protected PathNavigator createNavigator(World worldIn) {
         return new FlyingPathNavigator(this, worldIn);
-    }
-
-    @Override
-    public void travel(Vec3d relative) {
-        if (this.isServerWorld()) {
-            this.moveRelative(0.01F, relative);
-            this.move(MoverType.SELF, this.getMotion());
-            this.setMotion(this.getMotion().scale(0.9D));
-        } else {
-            super.travel(relative);
-        }
     }
 
     static class FlyGoal extends RandomFlyingGoal {
@@ -184,26 +176,7 @@ public class FireflyEntity extends CreatureEntity{
 
         @Override
         public void tick() {
-            this.fireflyEntity.setMotion(this.fireflyEntity.getMotion().add(0.0D, 0.0D, 0.0D));
-
-            //System.out.println(this.action);
-            //System.out.println(!this.fireflyEntity.getNavigator().noPath());
-
-            if (!this.fireflyEntity.getNavigator().noPath()) {
-                double d0 = this.posX - this.fireflyEntity.posX;
-                double d1 = this.posY - this.fireflyEntity.posY;
-                double d2 = this.posZ - this.fireflyEntity.posZ;
-                double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                d1 /= d3;
-                float f = (float)(MathHelper.atan2(d2, d0) * 57.2957763671875D) - 90.0F;
-                this.fireflyEntity.rotationYaw = this.limitAngle(this.fireflyEntity.rotationYaw, f, 90.0F);
-                this.fireflyEntity.renderYawOffset = this.fireflyEntity.rotationYaw;
-                float f1 = (float)(this.speed * this.fireflyEntity.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue());
-                this.fireflyEntity.setAIMoveSpeed(MathHelper.lerp(1.5F, this.fireflyEntity.getAIMoveSpeed(), f1));
-                this.fireflyEntity.setMotion(this.fireflyEntity.getMotion().add(0.0D, (double)this.fireflyEntity.getAIMoveSpeed() * d1 * 0.01D, 0.0D));
-            } else {
-                this.fireflyEntity.setAIMoveSpeed(0.0F);
-            }
+            super.tick();
         }
     }
 
