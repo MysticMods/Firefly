@@ -1,32 +1,46 @@
 package mart.firefly.entity;
 
+import mart.firefly.entity.goals.RandomFlyingGoal;
 import mart.firefly.registry.ModItems;
 import mart.firefly.util.ColorUtil;
 import mart.firefly.util.RgbColor;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.FlyingEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class FireflyEntity extends FlyingEntity {
-
-    private BlockPos spawnPosition = null;
+public class FireflyEntity extends CreatureEntity{
 
     public static final DataParameter<String> TYPE = EntityDataManager.createKey(FireflyEntity.class, DataSerializers.STRING);
 
-    public FireflyEntity(EntityType<? extends FlyingEntity> type, World worldIn) {
+    private FlyingPathNavigator navigator;
+
+    public FireflyEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
+        this.navigator = (FlyingPathNavigator) this.createNavigator(worldIn);
+        this.moveController = new FireflyEntity.MoveHelperController(this);
+    }
+
+    @Override
+    protected void registerGoals()
+    {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new FireflyEntity.FlyGoal(this));
     }
 
     @Override
@@ -126,22 +140,79 @@ public class FireflyEntity extends FlyingEntity {
     }
 
     @Override
-    protected void updateAITasks() {
-        super.updateAITasks();
-        if (this.spawnPosition == null || this.rand.nextInt(30) == 0 || this.spawnPosition.withinDistance(this.getPositionVec(), 2.0D)) {
-            this.spawnPosition = new BlockPos(this.posX + (double)this.rand.nextInt(7) - (double)this.rand.nextInt(7), this.posY + (double)this.rand.nextInt(6) - 2.0D, this.posZ + (double)this.rand.nextInt(7) - (double)this.rand.nextInt(7));
-        }
-        double lvt_3_1_ = (double)this.spawnPosition.getX() + 0.5D - this.posX;
-        double lvt_5_1_ = (double)this.spawnPosition.getY() + 0.1D - this.posY;
-        double lvt_7_1_ = (double)this.spawnPosition.getZ() + 0.5D - this.posZ;
-        Vec3d lvt_9_1_ = this.getMotion();
-        Vec3d lvt_10_1_ = lvt_9_1_.add((Math.signum(lvt_3_1_) * 0.5D - lvt_9_1_.x) * 0.10000000149011612D, (Math.signum(lvt_5_1_) * 0.699999988079071D - lvt_9_1_.y) * 0.10000000149011612D, (Math.signum(lvt_7_1_) * 0.5D - lvt_9_1_.z) * 0.10000000149011612D);
-        this.setMotion(lvt_10_1_);
-        float lvt_11_1_ = (float)(MathHelper.atan2(lvt_10_1_.z, lvt_10_1_.x) * 57.2957763671875D) - 90.0F;
-        float lvt_12_1_ = MathHelper.wrapDegrees(lvt_11_1_ - this.rotationYaw);
-        this.moveForward = 0.1F;
-        this.rotationYaw += lvt_12_1_;
+    public boolean hasNoGravity() {
+        return true;
     }
+
+    ///Movement
+
+    @Override
+    protected PathNavigator createNavigator(World worldIn) {
+        return new FlyingPathNavigator(this, worldIn);
+    }
+
+    @Override
+    public void travel(Vec3d relative) {
+        if (this.isServerWorld()) {
+            this.moveRelative(0.01F, relative);
+            this.move(MoverType.SELF, this.getMotion());
+            this.setMotion(this.getMotion().scale(0.9D));
+        } else {
+            super.travel(relative);
+        }
+    }
+
+    static class FlyGoal extends RandomFlyingGoal {
+
+        public FlyGoal(FireflyEntity fireflyEntity) {
+            super(fireflyEntity, 0.8D, 40);
+        }
+
+        @Override
+        public boolean shouldExecute() {
+            return super.shouldExecute();
+        }
+    }
+
+    static class MoveHelperController extends MovementController {
+        private final FireflyEntity fireflyEntity;
+
+        MoveHelperController(FireflyEntity fireflyEntity) {
+            super(fireflyEntity);
+            this.fireflyEntity = fireflyEntity;
+        }
+
+        @Override
+        public void tick() {
+            this.fireflyEntity.setMotion(this.fireflyEntity.getMotion().add(0.0D, 0.0D, 0.0D));
+
+            //System.out.println(this.action);
+            //System.out.println(!this.fireflyEntity.getNavigator().noPath());
+
+            if (!this.fireflyEntity.getNavigator().noPath()) {
+                double d0 = this.posX - this.fireflyEntity.posX;
+                double d1 = this.posY - this.fireflyEntity.posY;
+                double d2 = this.posZ - this.fireflyEntity.posZ;
+                double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+                d1 /= d3;
+                float f = (float)(MathHelper.atan2(d2, d0) * 57.2957763671875D) - 90.0F;
+                this.fireflyEntity.rotationYaw = this.limitAngle(this.fireflyEntity.rotationYaw, f, 90.0F);
+                this.fireflyEntity.renderYawOffset = this.fireflyEntity.rotationYaw;
+                float f1 = (float)(this.speed * this.fireflyEntity.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue());
+                this.fireflyEntity.setAIMoveSpeed(MathHelper.lerp(1.5F, this.fireflyEntity.getAIMoveSpeed(), f1));
+                this.fireflyEntity.setMotion(this.fireflyEntity.getMotion().add(0.0D, (double)this.fireflyEntity.getAIMoveSpeed() * d1 * 0.01D, 0.0D));
+            } else {
+                this.fireflyEntity.setAIMoveSpeed(0.0F);
+            }
+        }
+    }
+
+    @Override
+    public FlyingPathNavigator getNavigator() {
+        return this.navigator;
+    }
+
+    //End movement
 
     public enum FireflyType {
         FAIRY,
@@ -152,4 +223,10 @@ public class FireflyEntity extends FlyingEntity {
         VOID,
         EARTH
     }
+
+
+
+
 }
+
+

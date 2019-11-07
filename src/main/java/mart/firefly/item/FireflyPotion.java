@@ -2,13 +2,13 @@ package mart.firefly.item;
 
 import mart.firefly.Firefly;
 import mart.firefly.registry.ModEffects;
+import mart.firefly.registry.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
@@ -89,11 +89,11 @@ public class FireflyPotion extends Item {
 
         if (playerEntity == null || !playerEntity.abilities.isCreativeMode) {
             if (stack.isEmpty()) {
-                return new ItemStack(Items.GLASS_BOTTLE);
+                return new ItemStack(ModItems.FIREFLY_JAR);
             }
 
             if (playerEntity != null) {
-                playerEntity.inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+                playerEntity.inventory.addItemStackToInventory(new ItemStack(ModItems.FIREFLY_JAR));
             }
         }
 

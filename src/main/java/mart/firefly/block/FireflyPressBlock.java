@@ -1,5 +1,6 @@
 package mart.firefly.block;
 
+import epicsquid.mysticallib.util.Util;
 import mart.firefly.Firefly;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -52,9 +54,16 @@ public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> 
         return new FireflyPressTile();
     }
 
-
     @Override
     public Supplier<FireflyPressTile> getTile() {
         return FireflyPressTile::new;
+    }
+
+    @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        FireflyPressTile tile = (FireflyPressTile)worldIn.getTileEntity(pos);
+        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(handler -> Util.spawnInventoryInWorld(worldIn, pos.getX(), pos.getY(), pos.getZ(), handler));
+
+        super.onReplaced(state, worldIn, pos, newState, isMoving);
     }
 }

@@ -1,6 +1,9 @@
 package mart.firefly.tile;
 
+import mart.firefly.item.FireflyPotion;
+import mart.firefly.recipes.CauldronRecipe;
 import mart.firefly.registry.ModBlocks;
+import mart.firefly.registry.ModRecipes;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,6 +22,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static mart.firefly.block.CauldronBlock.ON;
@@ -59,6 +63,15 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
                             System.out.println(returnStack);
                             if(returnStack == ItemStack.EMPTY){
                                 entity.remove();
+
+                                List<ItemStack> handlerItems = getItemListFromHandler();
+                                for(CauldronRecipe recipe : ModRecipes.getPotionRecipes()){
+                                    if(recipe.matches(handlerItems)){
+                                        world.addEntity(new ItemEntity(world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), recipe.getResult().copy()));
+                                        clearStorage();
+                                    }
+                                }
+
                                 break;
                             }
                         }
@@ -87,7 +100,7 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return true;
+                return !(stack.getItem() instanceof FireflyPotion);
             }
 
             @Nonnull
@@ -101,7 +114,31 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
             public ItemStack extractItem(int slot, int amount, boolean simulate) {
                 return super.extractItem(slot, amount, simulate);
             }
+
+            @Override
+            protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+                return 1;
+            }
         };
+    }
+
+    public List<ItemStack> getItemListFromHandler(){
+        List<ItemStack> items = new ArrayList<>();
+        this.handler.ifPresent(itemStackHandler -> {
+            for(int i = 0; i < itemStackHandler.getSlots(); i++){
+                items.add(itemStackHandler.getStackInSlot(i).copy());
+            }
+        });
+        return items;
+    }
+
+    public void clearStorage() {
+        this.handler.ifPresent(handler ->{
+            for (int i = 0; i < handler.getSlots(); i++) {
+                handler.setStackInSlot(i, ItemStack.EMPTY);
+            }
+        });
+
     }
 
     @Override

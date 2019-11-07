@@ -8,7 +8,9 @@
 		"cauldron_inside": "firefly:block/cauldron_inside",
 		"particle": "firefly:block/cauldron_inside",
 		"cauldron_underside_on": "firefly:block/cauldron_underside_off",
-		"cauldron_coals": "firefly:block/cauldron_coals_off"
+		"cauldron_coals": "firefly:block/cauldron_coals_off",
+		"water_still": "firefly:block/water_still"
+
 	},
 	"elements": [
 		{
@@ -239,12 +241,12 @@
 			"from": [2, 11, 2],
 			"to": [14, 12, 14],
 			"faces": {
-				"north": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-				"east": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-				"south": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-				"west": {"uv": [0, 0, 12, 1], "texture": "#missing"},
+				"north": {"uv": [0, 0, 12, 1], "texture": "#water_still"},
+				"east": {"uv": [0, 0, 12, 1], "texture": "#water_still"},
+				"south": {"uv": [0, 0, 12, 1], "texture": "#water_still"},
+				"west": {"uv": [0, 0, 12, 1], "texture": "#water_still"},
 				"up": {"uv": [0, 0, 12, 12], "texture": "#6"},
-				"down": {"uv": [0, 0, 12, 12], "texture": "#missing"}
+				"down": {"uv": [0, 0, 12, 12], "texture": "#water_still"}
 			}
 		}
 	]
