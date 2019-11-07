@@ -13,6 +13,9 @@ public class ModItems {
     public static final Item FIREFLY_JUICE_FOREST = null, FIREFLY_JUICE_FAIRY = null, FIREFLY_JUICE_MOUNTAIN = null,
             FIREFLY_JUICE_DEMON = null, FIREFLY_JUICE_ICE = null, FIREFLY_JUICE_VOID = null, FIREFLY_JUICE_EARTH = null;
 
+    public static final Item POTION_BLOODFURY = null, POTION_DRAGONS_WRATH = null, POTION_DRUIDS_DELIGHT = null, POTION_LIQUID_LUCK = null,
+            POTION_MANDRAGORA = null, POTION_WISDOM_DRAUGHT = null;
+
     public static final Item SCROLL_SAGE = null, SCROLL_DRUID = null, SCROLL_MINER = null, SCROLL_THUNDER = null,
             SCROLL_DEMON = null;
 }

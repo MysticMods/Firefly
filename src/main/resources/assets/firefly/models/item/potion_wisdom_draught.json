@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "firefly:item/potion_wisdom_draught"
+  }
+}

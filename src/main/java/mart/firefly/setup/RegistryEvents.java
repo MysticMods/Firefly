@@ -13,6 +13,7 @@ import mart.firefly.gui.ScrollTableContainer;
 import mart.firefly.gui.ScrollTableScreen;
 import mart.firefly.item.FireflyJarItem;
 import mart.firefly.item.FireflyJuiceItem;
+import mart.firefly.item.FireflyPotion;
 import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.network.ScrollTablePacket;
@@ -101,6 +102,12 @@ public class RegistryEvents {
         event.getRegistry().register(new SageScrollItem("scroll_sage"));
         event.getRegistry().register(new ThunderScrollItem("scroll_thunder"));
         event.getRegistry().register(new DemonScrollItem("scroll_demon"));
+        event.getRegistry().register(new FireflyPotion("potion_bloodfury"));
+        event.getRegistry().register(new FireflyPotion("potion_dragons_wrath"));
+        event.getRegistry().register(new FireflyPotion("potion_druids_delight"));
+        event.getRegistry().register(new FireflyPotion("potion_liquid_luck"));
+        event.getRegistry().register(new FireflyPotion("potion_mandragora"));
+        event.getRegistry().register(new FireflyPotion("potion_wisdom_draught"));
     }
 
     @SubscribeEvent

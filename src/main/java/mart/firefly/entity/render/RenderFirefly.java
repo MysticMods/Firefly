@@ -52,7 +52,7 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
 
         bindTexture(new ResourceLocation(Firefly.MODID, "textures/particle/particle_glow.png"));
 
-
+        GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, 240.0F, 240.0F);
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
