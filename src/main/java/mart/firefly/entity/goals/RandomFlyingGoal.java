@@ -1,25 +1,54 @@
 package mart.firefly.entity.goals;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import mart.firefly.entity.FireflyEntity;
+import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.entity.ai.goal.Goal;
 
-public class RandomFlyingGoal extends RandomSwimmingGoal {
-    public RandomFlyingGoal(CreatureEntity p_i48937_1_, double p_i48937_2_, int p_i48937_4_) {
-        super(p_i48937_1_, p_i48937_2_, p_i48937_4_);
+import java.util.EnumSet;
+import java.util.Random;
+
+public class RandomFlyingGoal extends Goal {
+    private final FireflyEntity parentEntity;
+
+    public RandomFlyingGoal(FireflyEntity ghast) {
+        this.parentEntity = ghast;
+        this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
     }
 
+    /**
+     * Returns whether the EntityAIBase should begin execution.
+     */
     @Override
-    protected Vec3d getPosition() {
-        System.out.println("gets called");
-        Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.creature, 10, 7);
-
-        for(int i = 0; vec3d != null && !this.creature.world.getBlockState(new BlockPos(vec3d)).allowsMovement(this.creature.world, new BlockPos(vec3d), PathType.WATER) && i++ < 10; vec3d = RandomPositionGenerator.findRandomTarget(this.creature, 10, 7)) {
-
+    public boolean shouldExecute() {
+        MovementController movementcontroller = this.parentEntity.getMoveHelper();
+        if (!movementcontroller.isUpdating()) {
+            return true;
+        } else {
+            double d0 = movementcontroller.getX() - this.parentEntity.posX;
+            double d1 = movementcontroller.getY() - this.parentEntity.posY;
+            double d2 = movementcontroller.getZ() - this.parentEntity.posZ;
+            double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+            return d3 < 1.0D || d3 > 3600.0D;
         }
-        return vec3d;
+    }
+
+    /**
+     * Returns whether an in-progress EntityAIBase should continue executing
+     */
+    @Override
+    public boolean shouldContinueExecuting() {
+        return true;
+    }
+
+    /**
+     * Execute a one shot task or start executing a continuous task
+     */
+    @Override
+    public void startExecuting() {
+        Random random = this.parentEntity.getRNG();
+        double d0 = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1D);
     }
 }
