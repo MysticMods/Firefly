@@ -6,7 +6,8 @@
 		"cauldron_top": "firefly:block/cauldron_top",
 		"cauldron_inside": "firefly:block/cauldron_inside",
 		"cauldron_underside_on": "firefly:block/cauldron_underside_off",
-		"cauldron_coals": "firefly:block/cauldron_coals_off"
+		"cauldron_coals": "firefly:block/cauldron_coals_off",
+		"particle": "firefly:block/cauldron_inside"
 	},
 	"elements": [
 		{

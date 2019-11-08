@@ -55,30 +55,31 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
         if(getBlockState().get(WATER)){
             List<ItemEntity> items = world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(
                     getPos().getX(),getPos().getY(),getPos().getZ(),
-                    getPos().getX() + 1,getPos().getY() + 2,getPos().getZ() + 1)
+                    getPos().getX() + 1,getPos().getY() + 0.5,getPos().getZ() + 1)
             );
 
-            if(items.size() > 0){
-                for(ItemEntity entity : items){
-                    handler.ifPresent(handler ->{
-                        for(int i = 0; i < handler.getSlots(); i++){
-                            ItemStack returnStack = handler.insertItem(i, entity.getItem(), false);
-                            System.out.println(returnStack);
-                            if(returnStack == ItemStack.EMPTY){
-                                entity.remove();
+            if(world.getBlockState(this.pos).get(ON)){
+                if(items.size() > 0){
+                    for(ItemEntity entity : items){
+                        handler.ifPresent(handler ->{
+                            for(int i = 0; i < handler.getSlots(); i++){
+                                ItemStack returnStack = handler.insertItem(i, entity.getItem(), false);
+                                if(returnStack == ItemStack.EMPTY){
+                                    entity.remove();
 
-                                List<ItemStack> handlerItems = getItemListFromHandler();
-                                for(CauldronRecipe recipe : ModRecipes.getPotionRecipes()){
-                                    if(recipe.matches(handlerItems)){
-                                        world.addEntity(new ItemEntity(world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), recipe.getResult().copy()));
-                                        clearStorage();
+                                    List<ItemStack> handlerItems = getItemListFromHandler();
+                                    for(CauldronRecipe recipe : ModRecipes.getPotionRecipes()){
+                                        if(recipe.matches(handlerItems)){
+                                            world.addEntity(new ItemEntity(world, this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5, recipe.getResult().copy()));
+                                            clearStorage();
+                                        }
                                     }
-                                }
 
-                                break;
+                                    break;
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             }
         }

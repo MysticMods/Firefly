@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"firefly_lure": "firefly:block/firefly_lure_off"
+		"firefly_lure": "firefly:block/firefly_lure_off",
+		"particle": "firefly:block/firefly_lure_off"
 	},
 	"elements": [
 		{

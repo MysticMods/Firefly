@@ -8,5 +8,31 @@
     "item.firefly.firefly_jar_void": "Void Firefly",
     "item.firefly.firefly_jar_demon": "Demon Firefly",
     "item.firefly.firefly_jar_ice": "Ice Firefly",
-    "item.firefly.firefly_jar_earth": "Earth Firefly"
+    "item.firefly.firefly_jar_earth": "Earth Firefly",
+
+    "item.firefly.firefly_juice_forest": "Forest Firefly Juice",
+    "item.firefly.firefly_juice_fairy": "Fairy Firefly Juice",
+    "item.firefly.firefly_juice_mountain": "Mountain Firefly Juice",
+    "item.firefly.firefly_juice_void": "Void Firefly Juice",
+    "item.firefly.firefly_juice_demon": "Demon Firefly Juice",
+    "item.firefly.firefly_juice_ice": "Ice Firefly Juice",
+    "item.firefly.firefly_juice_earth": "Earth Firefly Juice",
+
+    "item.firefly.scroll_druid": "Druid Scroll",
+    "item.firefly.scroll_miner": "Miner Scroll",
+    "item.firefly.scroll_sage": "Sage Scroll",
+    "item.firefly.scroll_thunder": "Thunder Scroll",
+    "item.firefly.scroll_demon": "Demon Scroll",
+
+    "item.firefly.potion_bloodfury": "Bloodfury Potion",
+    "item.firefly.potion_dragons_wrath": "Dragon's Wrath Potion",
+    "item.firefly.potion_druids_delight": "Druids Delight Potion",
+    "item.firefly.potion_liquid_luck": "Liquid Luck Potion",
+    "item.firefly.potion_mandragora": "Mandragora Potion",
+    "item.firefly.potion_wisdom_draught": "Wisdom Draught Potion",
+
+    "block.firefly.firefly_press": "Firefly Press",
+    "block.firefly.scroll_table": "Scroll Table",
+    "block.firefly.cauldron": "Potion Cauldron",
+    "block.firefly.firefly_lure": "Firefly Lure"
 }

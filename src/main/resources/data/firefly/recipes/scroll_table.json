@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GA ",
+    "PBP",
+    "PPP"
+  ],
+  "key": {
+    "G": {
+      "item": "firefly:firefly_jar"
+    },
+    "A": {
+      "item": "minecraft:paper"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "B": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "firefly:scroll_table"
+  }
+}
