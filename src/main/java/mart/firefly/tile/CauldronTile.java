@@ -42,6 +42,9 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
             return true;
         } else if(playerIn.getHeldItem(hand).getItem() == Items.WATER_BUCKET){
             world.setBlockState(getPos(), getBlockState().with(WATER, true));
+            if(!playerIn.isCreative()){
+                playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
+            }
             return true;
         }
         return false;

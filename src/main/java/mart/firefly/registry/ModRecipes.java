@@ -37,6 +37,31 @@ public class ModRecipes {
                 new ItemStack(Items.WHEAT),
                 new ItemStack(Items.APPLE)
         ));
+        potionRecipes.add(new CauldronRecipe(new ItemStack(ModItems.POTION_DRAGONS_WRATH)).setName("recipe_dragons_wrath").addIngredients(
+                new ItemStack(ModItems.FIREFLY_JUICE_VOID),
+                new ItemStack(Items.BLAZE_POWDER),
+                new ItemStack(Items.NETHER_WART)
+        ));
+        potionRecipes.add(new CauldronRecipe(new ItemStack(ModItems.POTION_WISDOM_DRAUGHT)).setName("recipe_wisdom_draught").addIngredients(
+                new ItemStack(ModItems.FIREFLY_JAR_FAIRY),
+                new ItemStack(Items.BOOK),
+                new ItemStack(Items.GLOWSTONE_DUST)
+        ));
+        potionRecipes.add(new CauldronRecipe(new ItemStack(ModItems.POTION_DRUIDS_DELIGHT)).setName("recipe_mandragora").addIngredients(
+                new ItemStack(ModItems.FIREFLY_JUICE_DEMON),
+                new ItemStack(Items.SPIDER_EYE),
+                new ItemStack(Items.ROTTEN_FLESH)
+        ));
+        potionRecipes.add(new CauldronRecipe(new ItemStack(ModItems.POTION_DRUIDS_DELIGHT)).setName("recipe_liquid_luck").addIngredients(
+                new ItemStack(ModItems.FIREFLY_JUICE_MOUNTAIN),
+                new ItemStack(Items.COAL),
+                new ItemStack(Items.LAPIS_LAZULI)
+        ));
+        potionRecipes.add(new CauldronRecipe(new ItemStack(ModItems.POTION_DRUIDS_DELIGHT)).setName("recipe_bloodfury").addIngredients(
+                new ItemStack(ModItems.FIREFLY_JUICE_DEMON),
+                new ItemStack(Items.MAGMA_CREAM),
+                new ItemStack(Items.GLISTERING_MELON_SLICE)
+        ));
     }
 
     public static Item getPressOutput(Item input){

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "firefly:block/firefly_lure_off"},
+    "on=true": { "model": "firefly:block/firefly_lure_on"}
+  }
+}
