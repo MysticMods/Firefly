@@ -1,7 +1,6 @@
 package mart.firefly.block;
 
 import mart.firefly.Firefly;
-import mart.firefly.tile.CauldronTile;
 import mart.firefly.tile.FireflyLureTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
