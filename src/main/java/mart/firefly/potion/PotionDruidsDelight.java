@@ -8,4 +8,6 @@ public class PotionDruidsDelight extends PotionFireflyMagic {
     public PotionDruidsDelight() {
         super("potion_druids_delight", new EffectInstance(ModEffects.EFFECT_DRUIDS_DELIGHT, 2400));
     }
+
+
 }
