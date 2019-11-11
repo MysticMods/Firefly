@@ -3,7 +3,7 @@ package mart.firefly.gui;
 import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.network.PressActivatePacket;
-import mart.firefly.registry.ModBlocks;
+import mart.firefly.setup.ModBlocks;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,14 +11,13 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class FireflyPressContainer extends BaseContainer {
 
-    public FireflyPressContainer(int id, World world, BlockPos pos, PlayerInventory inventory) {
-        super(ModBlocks.FIREFLY_PRESS_CONTAINER, id, world, pos, inventory);
+    public FireflyPressContainer(int id, BlockPos pos, PlayerInventory inventory) {
+        super(ModBlocks.FIREFLY_PRESS_CONTAINER, id, pos, inventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
             addSlot(new SlotItemHandler(h, 0, 80, 24));

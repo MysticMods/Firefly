@@ -8,7 +8,6 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -19,9 +18,9 @@ public class BaseContainer extends Container {
     protected TileEntity tileEntity;
     protected List<ContainerButton> buttonList;
 
-    public BaseContainer(@Nullable ContainerType<?> type, int id, World world, BlockPos pos, PlayerInventory inventory) {
+    public BaseContainer(@Nullable ContainerType<?> type, int id, BlockPos pos, PlayerInventory inventory) {
         super(type, id);
-        this.tileEntity = world.getTileEntity(pos);
+        this.tileEntity = inventory.player.world.getTileEntity(pos);
         buttonList = new ArrayList<>();
     }
 

@@ -2,7 +2,7 @@ package mart.firefly.compat.jei.scroll;
 
 import mart.firefly.compat.jei.gui.BlockDrawable;
 import mart.firefly.recipes.ScrollRecipe;
-import mart.firefly.registry.ModBlocks;
+import mart.firefly.setup.ModBlocks;
 import mart.firefly.util.Constants;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;

@@ -1,4 +1,4 @@
-package mart.firefly.registry;
+package mart.firefly.setup;
 
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;

@@ -2,8 +2,8 @@ package mart.firefly.tile;
 
 import mart.firefly.item.FireflyPotion;
 import mart.firefly.recipes.CauldronRecipe;
-import mart.firefly.registry.ModBlocks;
-import mart.firefly.registry.ModRecipes;
+import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModRecipes;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

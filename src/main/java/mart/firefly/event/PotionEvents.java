@@ -1,7 +1,7 @@
 package mart.firefly.event;
 
 import epicsquid.mysticallib.util.Util;
-import mart.firefly.registry.ModEffects;
+import mart.firefly.setup.ModEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

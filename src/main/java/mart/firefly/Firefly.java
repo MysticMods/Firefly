@@ -1,5 +1,9 @@
 package mart.firefly;
 
+
+import mart.firefly.proxy.ClientProxy;
+import mart.firefly.proxy.IModProxy;
+import mart.firefly.proxy.ServerProxy;
 import mart.firefly.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -7,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -25,6 +30,8 @@ public class Firefly {
     };
 
     public static final String MODID = "firefly";
+
+    public static final IModProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
 
     public static final String CHANNEL = MODID;
     private static final String PROTOCOL_VERSION = "1.0";

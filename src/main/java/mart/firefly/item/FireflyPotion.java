@@ -1,8 +1,8 @@
 package mart.firefly.item;
 
 import mart.firefly.Firefly;
-import mart.firefly.registry.ModEffects;
-import mart.firefly.registry.ModItems;
+import mart.firefly.setup.ModEffects;
+import mart.firefly.setup.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

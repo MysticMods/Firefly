@@ -3,7 +3,7 @@ package mart.firefly.compat.jei;
 import mart.firefly.Firefly;
 import mart.firefly.compat.jei.potion.PotionCraftingCategory;
 import mart.firefly.compat.jei.scroll.ScrollCraftingCategory;
-import mart.firefly.registry.ModRecipes;
+import mart.firefly.setup.ModRecipes;
 import mart.firefly.util.Constants;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;

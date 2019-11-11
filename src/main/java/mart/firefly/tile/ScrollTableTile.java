@@ -3,8 +3,8 @@ package mart.firefly.tile;
 import mart.firefly.gui.ScrollTableContainer;
 import mart.firefly.item.FireflyJuiceItem;
 import mart.firefly.item.scroll.ScrollItem;
-import mart.firefly.registry.ModBlocks;
-import mart.firefly.registry.ModRecipes;
+import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -78,7 +78,7 @@ public class ScrollTableTile extends TileEntity implements ITickableTileEntity, 
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity playerEntity) {
-        return new ScrollTableContainer(id, getWorld(), getPos(), inventory);
+        return new ScrollTableContainer(id, getPos(), inventory);
     }
 
     @Nonnull

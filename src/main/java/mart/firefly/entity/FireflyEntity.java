@@ -1,7 +1,7 @@
 package mart.firefly.entity;
 
 import mart.firefly.entity.goals.RandomFlyingGoal;
-import mart.firefly.registry.ModItems;
+import mart.firefly.setup.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingEntity;

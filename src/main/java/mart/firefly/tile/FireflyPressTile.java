@@ -2,8 +2,8 @@ package mart.firefly.tile;
 
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.item.FireflyJarItem;
-import mart.firefly.registry.ModBlocks;
-import mart.firefly.registry.ModRecipes;
+import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -57,7 +57,7 @@ public class FireflyPressTile extends TileEntity implements ITickableTileEntity,
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity playerEntity) {
-        return new FireflyPressContainer(id, getWorld(), getPos(), inventory);
+        return new FireflyPressContainer(id, getPos(), inventory);
     }
 
     @Nonnull

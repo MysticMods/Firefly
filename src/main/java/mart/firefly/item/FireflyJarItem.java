@@ -2,8 +2,8 @@ package mart.firefly.item;
 
 import mart.firefly.Firefly;
 import mart.firefly.entity.FireflyEntity;
-import mart.firefly.registry.ModEntities;
-import mart.firefly.registry.ModItems;
+import mart.firefly.setup.ModEntities;
+import mart.firefly.setup.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;

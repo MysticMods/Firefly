@@ -2,8 +2,8 @@ package mart.firefly.tile;
 
 import mart.firefly.block.FireflyLureBlock;
 import mart.firefly.entity.FireflyEntity;
-import mart.firefly.registry.ModBlocks;
-import mart.firefly.registry.ModEntities;
+import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

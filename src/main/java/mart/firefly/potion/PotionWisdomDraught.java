@@ -1,6 +1,6 @@
 package mart.firefly.potion;
 
-import mart.firefly.registry.ModEffects;
+import mart.firefly.setup.ModEffects;
 import net.minecraft.potion.EffectInstance;
 
 public class PotionWisdomDraught extends PotionFireflyMagic {
