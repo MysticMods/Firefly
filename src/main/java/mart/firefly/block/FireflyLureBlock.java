@@ -28,7 +28,7 @@ public class FireflyLureBlock extends Block implements ITile<FireflyLureTile> {
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
     public FireflyLureBlock() {
-        super(Block.Properties.create(Material.WOOD));
+        super(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F));
         setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_lure"));
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE));
     }

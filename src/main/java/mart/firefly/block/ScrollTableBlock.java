@@ -33,7 +33,7 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
     public ScrollTableBlock() {
-        super(Block.Properties.create(Material.WOOD));
+        super(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F));
         setRegistryName(new ResourceLocation(Firefly.MODID, "scroll_table"));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }

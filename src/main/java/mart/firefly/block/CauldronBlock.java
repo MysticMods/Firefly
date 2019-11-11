@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -20,8 +21,10 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class CauldronBlock extends Block implements ITile<CauldronTile> {
@@ -33,9 +36,10 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
     protected static final VoxelShape WALLS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), INSIDE, IBooleanFunction.ONLY_FIRST);
 
     public CauldronBlock() {
-        super(Block.Properties.create(Material.WOOD));
+        super(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F));
         setRegistryName(new ResourceLocation(Firefly.MODID, "cauldron"));
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE).with(WATER, Boolean.FALSE));
+
     }
 
     @Override
@@ -72,5 +76,10 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
     @Override
     public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
         return WALLS;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState p_220076_1_, LootContext.Builder p_220076_2_) {
+        return super.getDrops(p_220076_1_, p_220076_2_);
     }
 }

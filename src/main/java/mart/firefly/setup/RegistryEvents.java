@@ -167,4 +167,8 @@ public class RegistryEvents {
         event.getRegistry().register(ModEffects.EFFECT_DRAGONS_WRATH = new FireflyEffect(EffectType.BENEFICIAL, 8171462, "effect_dragons_wrath"));
     }
 
+
+    public static List<Block> getBlocks() {
+        return blocks;
+    }
 }

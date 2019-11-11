@@ -8,6 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 
+import javax.annotation.Nullable;
+
 public class FireflyEffect extends Effect {
 
     private String effectName;
@@ -26,15 +28,35 @@ public class FireflyEffect extends Effect {
     @Override
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
         if (this == ModEffects.EFFECT_DRUIDS_DELIGHT) {
-            System.out.println("it runs");
-            if(Util.rand.nextInt(100) == 0){
-                System.out.println("Spawn entity");
+            if(!entityLivingBaseIn.world.isRemote){
+
                 Entity entity = FireflyUtil.getRandomPassiveMob(entityLivingBaseIn.world);
-                entity.posX = entityLivingBaseIn.posX + (Util.rand.nextInt(10) - 5);
-                entity.posZ = entityLivingBaseIn.posZ + (Util.rand.nextInt(10) - 5);
-                entity.posY = entityLivingBaseIn.posY;
+                entity.setPosition(
+                        entityLivingBaseIn.posX + (Util.rand.nextInt(10) - 5),
+                        entityLivingBaseIn.posY,
+                        entityLivingBaseIn.posZ + (Util.rand.nextInt(10) - 5)
+                );
                 entityLivingBaseIn.world.addEntity(entity);
             }
         }
+    }
+
+    @Override
+    public void affectEntity(@Nullable Entity p_180793_1_, @Nullable Entity p_180793_2_, LivingEntity p_180793_3_, int p_180793_4_, double p_180793_5_) {
+        System.out.println("happens");
+        super.affectEntity(p_180793_1_, p_180793_2_, p_180793_3_, p_180793_4_, p_180793_5_);
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        if (this == ModEffects.EFFECT_DRUIDS_DELIGHT) {
+            int k = 200 >> amplifier;
+            if (k > 0) {
+                return duration % k == 0;
+            } else {
+                return true;
+            }
+        }
+        return super.isReady(duration, amplifier);
     }
 }

@@ -41,6 +41,10 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
         map.put(Biomes.MOUNTAIN_EDGE, FireflyEntity.FireflyType.MOUNTAIN);
         map.put(Biomes.SNOWY_TAIGA_MOUNTAINS, FireflyEntity.FireflyType.MOUNTAIN);
 
+        map.put(Biomes.DESERT, FireflyEntity.FireflyType.EARTH);
+        map.put(Biomes.DESERT_HILLS, FireflyEntity.FireflyType.EARTH);
+        map.put(Biomes.DESERT_LAKES, FireflyEntity.FireflyType.EARTH);
+
         map.put(Biomes.SNOWY_MOUNTAINS, FireflyEntity.FireflyType.ICE);
         map.put(Biomes.SNOWY_TAIGA, FireflyEntity.FireflyType.ICE);
         map.put(Biomes.SNOWY_BEACH, FireflyEntity.FireflyType.ICE);
@@ -68,6 +72,13 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
 
             if(flies.size() < 10 && rand.nextInt(200) == 0){
                 FireflyEntity fly = new FireflyEntity(ModEntities.FIREFLY, world);
+
+                FireflyEntity.FireflyType type = map.getOrDefault(world.getBiome(this.pos), FireflyEntity.FireflyType.FOREST);
+                if(rand.nextInt(20) == 0){
+                    type = FireflyEntity.FireflyType.FAIRY;
+                }
+
+                fly.getDataManager().set(FireflyEntity.TYPE, type.name());
                 fly.setPosition(this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5);
                 world.addEntity(fly);
             }

@@ -2,26 +2,20 @@ package mart.firefly.event;
 
 import epicsquid.mysticallib.util.Util;
 import mart.firefly.registry.ModEffects;
-import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 @Mod.EventBusSubscriber
-public class ModEvents {
+public class PotionEvents {
 
     //Wisdom Draught Potion
     @SubscribeEvent
@@ -52,23 +46,39 @@ public class ModEvents {
         }
     }
 
+    //Bloodfury
     @SubscribeEvent
-    public static void onPlayerOreBreak(BlockEvent.HarvestDropsEvent event){
-        PlayerEntity player = event.getHarvester();
-        Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+    public static void onPlayerDamageEntityBloodfury(LivingDamageEvent event){
+        if(event.getSource().getTrueSource() instanceof PlayerEntity){
+            PlayerEntity player = (PlayerEntity) event.getSource().getTrueSource();
 
-        if(player == null || !(block instanceof OreBlock)){
-            return;
-        }
-
-        for(EffectInstance effect : player.getActivePotionEffects()){
-            if(effect.getPotion() == ModEffects.EFFECT_LIQUID_LUCK){
-                List<ItemStack> drops = event.getDrops();
-                if (Util.rand.nextInt(3) == 0) {
-                    drops.addAll(new ArrayList<>(drops));
+            for(EffectInstance effect : player.getActivePotionEffects()){
+                if(effect.getPotion() == ModEffects.EFFECT_BLOODFURY){
+                    if (Util.rand.nextInt(8) == 0) {
+                        event.setAmount(event.getAmount() * 2);
+                    }
                 }
             }
         }
+    }
 
+    //Dragons Wrath
+    @SubscribeEvent
+    public static void onPlayerDamageEntityDW(LivingDamageEvent event){
+        if(event.getEntity() instanceof PlayerEntity){
+            PlayerEntity player = (PlayerEntity) event.getEntity();
+            Entity damager = event.getSource().getTrueSource();
+            if(damager == null){
+                return;
+            }
+            for(EffectInstance effect : player.getActivePotionEffects()){
+                if(effect.getPotion() == ModEffects.EFFECT_DRAGONS_WRATH){
+                    if (Util.rand.nextInt(6) == 0) {
+                        damager.setFire(5);
+                        event.setAmount(0);
+                    }
+                }
+            }
+        }
     }
 }

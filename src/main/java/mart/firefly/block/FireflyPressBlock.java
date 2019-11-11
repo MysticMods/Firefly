@@ -25,7 +25,7 @@ import java.util.function.Supplier;
 public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> {
 
     public FireflyPressBlock() {
-        super(Block.Properties.create(Material.WOOD));
+        super(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5F));
         setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_press"));
     }
 
