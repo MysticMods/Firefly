@@ -1,8 +1,5 @@
 package mart.firefly;
 
-import epicsquid.mysticallib.setup.ClientProxy;
-import epicsquid.mysticallib.setup.IProxy;
-import epicsquid.mysticallib.setup.ServerProxy;
 import mart.firefly.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -10,7 +7,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -39,10 +35,6 @@ public class Firefly {
             .networkProtocolVersion(() -> PROTOCOL_VERSION)
             .simpleChannel();
 
-    // Sided setup
-//    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-
-    // Side agnostic setup
     public static ModSetup setup = new ModSetup();
 
     public Firefly() {
