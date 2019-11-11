@@ -3,7 +3,6 @@ package mart.firefly.setup;
 import mart.firefly.Firefly;
 import mart.firefly.block.*;
 import mart.firefly.entity.FireflyEntity;
-import mart.firefly.entity.render.RenderFirefly;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.gui.ScrollTableContainer;
@@ -32,10 +31,10 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -45,7 +44,7 @@ import java.util.List;
 import java.util.Objects;
 
 @SuppressWarnings("unchecked")
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(value= {Dist.DEDICATED_SERVER}, modid= Firefly.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryEvents {
 
     private static List<Block> blocks = new ArrayList<>();
@@ -141,8 +140,6 @@ public class RegistryEvents {
     {
         event.getRegistry().register(EntityType.Builder.create(FireflyEntity::new, EntityClassification.CREATURE).size(0.5F, 0.5F).build("firefly")
                 .setRegistryName(new ResourceLocation(Firefly.MODID, "firefly")));
-
-        RenderingRegistry.registerEntityRenderingHandler(FireflyEntity.class, RenderFirefly::new);
     }
 
     @SubscribeEvent
