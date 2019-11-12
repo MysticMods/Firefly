@@ -1,10 +1,8 @@
 package mart.firefly.block;
 
-import mart.firefly.Firefly;
 import mart.firefly.tile.CauldronTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
@@ -12,7 +10,6 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -35,12 +32,11 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
     protected static final VoxelShape INSIDE = Block.makeCuboidShape(3.0D, 4.0D, 3.0D, 13.0D, 16.0D, 13.0D);
     protected static final VoxelShape WALLS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), INSIDE, IBooleanFunction.ONLY_FIRST);
 
-    public CauldronBlock() {
-        super(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F));
-        setRegistryName(new ResourceLocation(Firefly.MODID, "cauldron"));
+    public CauldronBlock(Properties properties) {
+        super(properties);
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE).with(WATER, Boolean.FALSE));
-
     }
+
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {

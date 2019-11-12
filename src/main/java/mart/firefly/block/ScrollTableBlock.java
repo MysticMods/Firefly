@@ -1,12 +1,10 @@
 package mart.firefly.block;
 
 import epicsquid.mysticallib.util.Util;
-import mart.firefly.Firefly;
 import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -17,7 +15,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -32,11 +29,11 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
 
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
-    public ScrollTableBlock() {
-        super(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F));
-        setRegistryName(new ResourceLocation(Firefly.MODID, "scroll_table"));
+    public ScrollTableBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
+
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -47,7 +44,7 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
                 return true;
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return true;
     }
 
     @Override

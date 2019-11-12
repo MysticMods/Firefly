@@ -1,7 +1,7 @@
 package mart.firefly.registry;
 
 import mart.firefly.Firefly;
-import mart.firefly.block.*;
+import mart.firefly.block.ITile;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.gui.FireflyPressContainer;
 import mart.firefly.gui.ScrollTableContainer;
@@ -12,13 +12,13 @@ import mart.firefly.item.scroll.*;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.potion.*;
+import mart.firefly.setup.ModBlocks;
 import mart.firefly.setup.ModEffects;
 import mart.firefly.util.ColorUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
@@ -56,22 +56,14 @@ public class RegistryEvents {
 
     @SubscribeEvent
     public static void onBlockRegistry(final RegistryEvent.Register<Block> event){
-        blocks.add(new FireflyPressBlock());
-        blocks.add(new ScrollTableBlock());
-        blocks.add(new CauldronBlock());
-        blocks.add(new FireflyLureBlock());
-
-        for(Block b : blocks){
-            event.getRegistry().register(b);
-        }
+        blocks.add(ModBlocks.FIREFLY_PRESS.get());
+        blocks.add(ModBlocks.SCROLL_TABLE.get());
+        blocks.add(ModBlocks.CAULDRON.get());
+        blocks.add(ModBlocks.FIREFLY_LURE.get());
     }
 
     @SubscribeEvent
     public static void onItemRegistry(final RegistryEvent.Register<Item> event){
-        for(Block b : blocks){
-            event.getRegistry().register(new BlockItem(b, new Item.Properties().group(Firefly.GROUP)).setRegistryName(b.getRegistryName()));
-        }
-
         event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(Firefly.GROUP)).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_jar")));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_fairy", FireflyEntity.FireflyType.FAIRY));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_forest", FireflyEntity.FireflyType.FOREST));

@@ -26,7 +26,7 @@ public class ScrollCraftingCategory implements IRecipeCategory {
     private IDrawable back;
 
     public ScrollCraftingCategory(IGuiHelper helper){
-        icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.SCROLL_TABLE)));
+        icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.SCROLL_TABLE.get())));
         back = helper.createBlankDrawable(100, 100);
     }
 
@@ -77,8 +77,8 @@ public class ScrollCraftingCategory implements IRecipeCategory {
 
         if(o instanceof ScrollRecipe){
             itemStacks.set(0, ((ScrollRecipe) o).scroll.getMatchingStacks()[0]);
-            itemStacks.set(1, new ItemStack(Items.PAPER));
-            itemStacks.set(2, ((ScrollRecipe) o).juice.getMatchingStacks()[0]);
+            itemStacks.set(2, new ItemStack(Items.PAPER));
+            itemStacks.set(1, ((ScrollRecipe) o).juice.getMatchingStacks()[0]);
         }
     }
 }

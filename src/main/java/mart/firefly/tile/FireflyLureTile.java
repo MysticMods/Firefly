@@ -2,8 +2,8 @@ package mart.firefly.tile;
 
 import mart.firefly.block.FireflyLureBlock;
 import mart.firefly.entity.FireflyEntity;
-import mart.firefly.setup.ModBlocks;
 import mart.firefly.setup.ModEntities;
+import mart.firefly.setup.ModTileEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -28,7 +28,7 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
     private Random rand = new Random();
 
     public FireflyLureTile() {
-        super(ModBlocks.FIREFLY_LURE_TILE);
+        super(ModTileEntities.FIREFLY_LURE_TILE);
         map.put(Biomes.FOREST, FireflyEntity.FireflyType.FOREST);
         map.put(Biomes.FLOWER_FOREST, FireflyEntity.FireflyType.FOREST);
         map.put(Biomes.BIRCH_FOREST, FireflyEntity.FireflyType.FOREST);
@@ -73,7 +73,7 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
             if(flies.size() < 10 && rand.nextInt(200) == 0){
                 FireflyEntity fly = new FireflyEntity(ModEntities.FIREFLY, world);
 
-                FireflyEntity.FireflyType type = map.getOrDefault(world.getBiome(this.pos), FireflyEntity.FireflyType.FOREST);
+                FireflyEntity.FireflyType type = map.getOrDefault(world.getBiome(this.pos).getCategory(), FireflyEntity.FireflyType.FOREST);
                 if(rand.nextInt(20) == 0){
                     type = FireflyEntity.FireflyType.FAIRY;
                 }

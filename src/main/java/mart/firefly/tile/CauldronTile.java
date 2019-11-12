@@ -2,8 +2,8 @@ package mart.firefly.tile;
 
 import mart.firefly.item.FireflyPotion;
 import mart.firefly.recipes.CauldronRecipe;
-import mart.firefly.setup.ModBlocks;
 import mart.firefly.setup.ModRecipes;
+import mart.firefly.setup.ModTileEntities;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -33,7 +33,7 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
     private LazyOptional<ItemStackHandler> handler = LazyOptional.of(this::createHandler);
 
     public CauldronTile() {
-        super(ModBlocks.CAULDRON_TILE);
+        super(ModTileEntities.CAULDRON_TILE);
     }
 
     public boolean onActivated(PlayerEntity playerIn, Hand hand) {

@@ -3,8 +3,8 @@ package mart.firefly.tile;
 import mart.firefly.gui.ScrollTableContainer;
 import mart.firefly.item.FireflyJuiceItem;
 import mart.firefly.item.scroll.ScrollItem;
-import mart.firefly.setup.ModBlocks;
 import mart.firefly.setup.ModRecipes;
+import mart.firefly.setup.ModTileEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -32,7 +32,7 @@ public class ScrollTableTile extends TileEntity implements ITickableTileEntity, 
     private LazyOptional<ItemStackHandler> handler = LazyOptional.of(this::createHandler);
 
     public ScrollTableTile() {
-        super(ModBlocks.SCROLL_TABLE_TILE);
+        super(ModTileEntities.SCROLL_TABLE_TILE);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class PotionCraftingCategory implements IRecipeCategory {
     private IDrawable back;
 
     public PotionCraftingCategory(IGuiHelper helper){
-        icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.CAULDRON)));
+        icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.CAULDRON.get())));
         back = helper.createBlankDrawable(100, 100);
     }
 

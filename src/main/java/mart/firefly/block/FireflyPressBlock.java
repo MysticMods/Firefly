@@ -1,17 +1,14 @@
 package mart.firefly.block;
 
 import epicsquid.mysticallib.util.Util;
-import mart.firefly.Firefly;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -24,9 +21,9 @@ import java.util.function.Supplier;
 
 public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> {
 
-    public FireflyPressBlock() {
-        super(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5F));
-        setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_press"));
+
+    public FireflyPressBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -38,9 +35,8 @@ public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> 
                 return true;
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return true;
     }
-
 
 
     @Override

@@ -4,6 +4,7 @@ import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.network.PressActivatePacket;
 import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModTileEntities;
 import mart.firefly.tile.FireflyPressTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,7 +18,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class FireflyPressContainer extends BaseContainer {
 
     public FireflyPressContainer(int id, BlockPos pos, PlayerInventory inventory) {
-        super(ModBlocks.FIREFLY_PRESS_CONTAINER, id, pos, inventory);
+        super(ModTileEntities.FIREFLY_PRESS_CONTAINER, id, pos, inventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
             addSlot(new SlotItemHandler(h, 0, 80, 24));
@@ -73,6 +74,6 @@ public class FireflyPressContainer extends BaseContainer {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.FIREFLY_PRESS);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.FIREFLY_PRESS.get());
     }
 }

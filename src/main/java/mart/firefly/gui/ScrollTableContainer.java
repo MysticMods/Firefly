@@ -4,6 +4,7 @@ import mart.firefly.Firefly;
 import mart.firefly.gui.button.ContainerButton;
 import mart.firefly.network.ScrollTablePacket;
 import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModTileEntities;
 import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,7 +18,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ScrollTableContainer extends BaseContainer {
 
     public ScrollTableContainer(int id, BlockPos pos, PlayerInventory inventory) {
-        super(ModBlocks.SCROLL_TABLE_CONTAINER, id, pos, inventory);
+        super(ModTileEntities.SCROLL_TABLE_CONTAINER, id, pos, inventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
             addSlot(new SlotItemHandler(h, 0, 31, 23));
@@ -75,6 +76,6 @@ public class ScrollTableContainer extends BaseContainer {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.SCROLL_TABLE);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, ModBlocks.SCROLL_TABLE.get());
     }
 }

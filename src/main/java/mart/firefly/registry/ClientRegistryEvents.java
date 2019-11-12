@@ -5,7 +5,7 @@ import mart.firefly.entity.FireflyEntity;
 import mart.firefly.entity.render.RenderFirefly;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.gui.ScrollTableScreen;
-import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModTileEntities;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,8 +24,8 @@ public class ClientRegistryEvents
 
     @SubscribeEvent
     public static void setupClient(final FMLClientSetupEvent event){
-        ScreenManager.registerFactory(ModBlocks.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
-        ScreenManager.registerFactory(ModBlocks.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);
+        ScreenManager.registerFactory(ModTileEntities.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
+        ScreenManager.registerFactory(ModTileEntities.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);
     }
 
 

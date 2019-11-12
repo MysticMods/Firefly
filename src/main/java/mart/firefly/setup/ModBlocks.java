@@ -1,32 +1,29 @@
 package mart.firefly.setup;
 
 
-import mart.firefly.gui.FireflyPressContainer;
-import mart.firefly.gui.ScrollTableContainer;
-import mart.firefly.tile.CauldronTile;
-import mart.firefly.tile.FireflyLureTile;
-import mart.firefly.tile.FireflyPressTile;
-import mart.firefly.tile.ScrollTableTile;
+import mart.firefly.Firefly;
+import mart.firefly.block.CauldronBlock;
+import mart.firefly.block.FireflyLureBlock;
+import mart.firefly.block.FireflyPressBlock;
+import mart.firefly.block.ScrollTableBlock;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.RegistryObject;
+
+import java.util.function.Supplier;
 
 
-@ObjectHolder("firefly")
+
 public class ModBlocks {
+    public static final Supplier<Item.Properties> SIG = () -> new Item.Properties().group(Firefly.GROUP);
+
     //Blocks
-    public static final Block FIREFLY_PRESS = null;
-    public static final Block SCROLL_TABLE = null;
-    public static final Block CAULDRON = null;
-    public static final Block FIREFLY_LURE = null;
+    public static RegistryObject<FireflyPressBlock> FIREFLY_PRESS = Firefly.REGISTRY.registerBlock("firefly_press", Firefly.REGISTRY.block(FireflyPressBlock::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5F)), SIG);
+    public static RegistryObject<ScrollTableBlock> SCROLL_TABLE = Firefly.REGISTRY.registerBlock("scroll_table", Firefly.REGISTRY.block(ScrollTableBlock::new, () -> Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F)), SIG);
+    public static RegistryObject<CauldronBlock> CAULDRON = Firefly.REGISTRY.registerBlock("cauldron", Firefly.REGISTRY.block(CauldronBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5F)), SIG);
+    public static RegistryObject<FireflyLureBlock> FIREFLY_LURE = Firefly.REGISTRY.registerBlock("firefly_lure", Firefly.REGISTRY.block(FireflyLureBlock::new, () -> Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F)), SIG);
 
-    //Tiles
-    public static final TileEntityType<FireflyPressTile> FIREFLY_PRESS_TILE = null;
-    public static final TileEntityType<ScrollTableTile> SCROLL_TABLE_TILE = null;
-    public static final TileEntityType<CauldronTile> CAULDRON_TILE = null;
-    public static final TileEntityType<FireflyLureTile> FIREFLY_LURE_TILE = null;
-
-    public static final ContainerType<FireflyPressContainer> FIREFLY_PRESS_CONTAINER = null;
-    public static final ContainerType<ScrollTableContainer> SCROLL_TABLE_CONTAINER = null;
+    public static void load() {
+    }
 }

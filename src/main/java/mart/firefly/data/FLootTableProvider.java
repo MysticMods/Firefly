@@ -43,10 +43,10 @@ public class FLootTableProvider extends LootTableProvider {
     public static class Blocks extends DeferredBlockLootTableProvider {
         @Override
         protected void addTables() {
-            self(() -> ModBlocks.FIREFLY_PRESS);
-            self(() -> ModBlocks.SCROLL_TABLE);
-            self(() -> ModBlocks.FIREFLY_LURE);
-            self(() -> ModBlocks.CAULDRON);
+            self(() -> ModBlocks.FIREFLY_PRESS.get());
+            self(() -> ModBlocks.SCROLL_TABLE.get());
+            self(() -> ModBlocks.FIREFLY_LURE.get());
+            self(() -> ModBlocks.CAULDRON.get());
         }
 
         @Override
