@@ -38,6 +38,10 @@ public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> 
         return true;
     }
 
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
+    }
 
     @Override
     public boolean hasTileEntity(BlockState state) {

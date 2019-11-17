@@ -29,6 +29,10 @@ public class FireflyLureBlock extends Block implements ITile<FireflyLureTile> {
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE));
     }
 
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
+    }
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {

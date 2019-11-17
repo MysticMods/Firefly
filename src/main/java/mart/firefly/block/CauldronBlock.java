@@ -37,6 +37,10 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE).with(WATER, Boolean.FALSE));
     }
 
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
+    }
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {

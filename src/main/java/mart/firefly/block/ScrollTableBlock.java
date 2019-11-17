@@ -34,6 +34,10 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
+    }
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
