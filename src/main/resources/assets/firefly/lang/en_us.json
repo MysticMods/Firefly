@@ -34,5 +34,12 @@
     "block.firefly.firefly_press": "Firefly Press",
     "block.firefly.scroll_table": "Scroll Table",
     "block.firefly.cauldron": "Potion Cauldron",
-    "block.firefly.firefly_lure": "Firefly Lure"
+    "block.firefly.firefly_lure": "Firefly Lure",
+
+    "effect_bloodfury": "Bloodfury",
+    "effect_dragons_wrath": "Dragons Wrath",
+    "effect_druids_delight": "Druids Delight",
+    "effect_liquid_luck": "Liquid Luck",
+    "effect_mandragora": "Mandragora",
+    "effect_wisdom_draught": "Wisdom Draught"
 }

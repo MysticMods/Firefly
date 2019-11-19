@@ -18,7 +18,7 @@ public class FireflyJarItem extends Item {
     private final FireflyEntity.FireflyType type;
 
     public FireflyJarItem(String name, FireflyEntity.FireflyType type) {
-        super(new Item.Properties().maxStackSize(1).group(Firefly.GROUP));
+        super(new Item.Properties().maxStackSize(16).group(Firefly.GROUP));
         setRegistryName(name);
         this.type = type;
     }

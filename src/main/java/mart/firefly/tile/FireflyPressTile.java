@@ -40,10 +40,11 @@ public class FireflyPressTile extends TileEntity implements ITickableTileEntity,
 
     public void activate(){
         handler.ifPresent(h ->{
+            int amount = h.getStackInSlot(0).getCount();
             ItemStack in = h.getStackInSlot(0);
             Item out = ModRecipes.getPressOutput(in.getItem());
             if(out != null){
-                h.setStackInSlot(0, new ItemStack(out));
+                h.setStackInSlot(0, new ItemStack(out, amount));
             }
         });
 

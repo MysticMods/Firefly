@@ -32,6 +32,8 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
 
     private LazyOptional<ItemStackHandler> handler = LazyOptional.of(this::createHandler);
 
+    private int usages = 0;
+
     public CauldronTile() {
         super(ModTileEntities.CAULDRON_TILE);
     }
