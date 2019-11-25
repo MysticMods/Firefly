@@ -8,6 +8,8 @@ import net.minecraft.entity.FlyingEntity;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -15,10 +17,7 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -28,6 +27,7 @@ import java.util.Random;
 public class FireflyEntity extends FlyingEntity {
 
     public static final DataParameter<String> TYPE = EntityDataManager.createKey(FireflyEntity.class, DataSerializers.STRING);
+    public static final DataParameter<BlockPos> ANCHOR = EntityDataManager.createKey(FireflyEntity.class, DataSerializers.BLOCK_POS);
 
     private FlyingPathNavigator navigator;
 
@@ -49,13 +49,23 @@ public class FireflyEntity extends FlyingEntity {
     protected void registerData() {
         super.registerData();
         this.dataManager.register(TYPE, FireflyType.FOREST.name());
+        this.dataManager.register(ANCHOR, BlockPos.ZERO);
     }
 
+    @Override
+    public void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        if(this.dataManager.get(ANCHOR) != BlockPos.ZERO){
+            tag.put("anchor", NBTUtil.writeBlockPos(this.dataManager.get(ANCHOR)));
+        }
+        tag.putString("type", this.dataManager.get(TYPE));
+    }
 
     @Override
-    public void tick() {
-        FireflyType type = FireflyType.valueOf(getDataManager().get(TYPE));
-        super.tick();
+    public void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        this.dataManager.set(ANCHOR, NBTUtil.readBlockPos((CompoundNBT) tag.get("anchor")));
+        this.dataManager.set(TYPE, tag.getString("type"));
     }
 
     @Override
@@ -177,15 +187,21 @@ public class FireflyEntity extends FlyingEntity {
 
         @Override
         public void tick() {
+            System.out.println(parentEntity.getDataManager().get(ANCHOR));
             if (this.courseChangeCooldown-- <= 0) {
+                if(parentEntity.getDataManager().get(ANCHOR) == BlockPos.ZERO){
+                    parentEntity.getDataManager().set(ANCHOR, parentEntity.getPosition());
+                }
+
                 this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 100;
                 Random random = new Random();
                 double d0 = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
                 double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
                 double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
-                this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 0.01D);
-
-
+                BlockPos pos = new BlockPos(d0, d1, d2);
+                if(pos.withinDistance(new Vec3i(parentEntity.getDataManager().get(ANCHOR).getX(), parentEntity.getDataManager().get(ANCHOR).getY(), parentEntity.getDataManager().get(ANCHOR).getZ()), 5)){
+                    this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 0.01D);
+                }
             }
 
             Vec3d vec3d = new Vec3d(this.posX - this.parentEntity.posX, this.posY - this.parentEntity.posY, this.posZ - this.parentEntity.posZ);
