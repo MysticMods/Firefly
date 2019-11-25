@@ -1,5 +1,6 @@
-package mart.firefly.compat.jei.potion;
+package mart.firefly.compat.jei.category;
 
+import mart.firefly.Firefly;
 import mart.firefly.compat.jei.gui.BlockDrawable;
 import mart.firefly.recipes.CauldronRecipe;
 import mart.firefly.setup.ModBlocks;
@@ -22,7 +23,7 @@ public class PotionCraftingCategory implements IRecipeCategory {
 
     public PotionCraftingCategory(IGuiHelper helper){
         icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.CAULDRON.get())));
-        back = helper.createBlankDrawable(100, 100);
+        back = helper.createDrawable(new ResourceLocation(Firefly.MODID, "textures/recipe/potion_recipe.png"), 0, 0, 78, 78);
     }
 
     @Override
@@ -62,10 +63,10 @@ public class PotionCraftingCategory implements IRecipeCategory {
     @Override
     public void setRecipe(IRecipeLayout iRecipeLayout, Object o, IIngredients iIngredients) {
         IGuiItemStackGroup itemStacks = iRecipeLayout.getItemStacks();
-        itemStacks.init(0, false, 41, 5);
-        itemStacks.init(1, true, 21, 50);
-        itemStacks.init(2, true, 41, 50);
-        itemStacks.init(3, true, 61, 50);
+        itemStacks.init(0, false, 29, 5);
+        itemStacks.init(1, true, 10, 55);
+        itemStacks.init(2, true, 30, 55);
+        itemStacks.init(3, true, 50, 55);
 
         if(o instanceof CauldronRecipe){
             itemStacks.set(0, ((CauldronRecipe) o).getResult());

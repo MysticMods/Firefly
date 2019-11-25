@@ -1,5 +1,6 @@
-package mart.firefly.compat.jei.scroll;
+package mart.firefly.compat.jei.category;
 
+import mart.firefly.Firefly;
 import mart.firefly.compat.jei.gui.BlockDrawable;
 import mart.firefly.recipes.ScrollRecipe;
 import mart.firefly.setup.ModBlocks;
@@ -27,7 +28,7 @@ public class ScrollCraftingCategory implements IRecipeCategory {
 
     public ScrollCraftingCategory(IGuiHelper helper){
         icon = new BlockDrawable(new ItemStack(Item.getItemFromBlock(ModBlocks.SCROLL_TABLE.get())));
-        back = helper.createBlankDrawable(100, 100);
+        back = helper.createDrawable(new ResourceLocation(Firefly.MODID, "textures/recipe/scroll_recipe.png"), 0, 0, 100, 40);
     }
 
     @Override
@@ -70,9 +71,9 @@ public class ScrollCraftingCategory implements IRecipeCategory {
     @Override
     public void setRecipe(IRecipeLayout iRecipeLayout, Object o, IIngredients iIngredients) {
         IGuiItemStackGroup itemStacks = iRecipeLayout.getItemStacks();
-        itemStacks.init(0, false, 70, 41);
-        itemStacks.init(1, true, 10, 31);
-        itemStacks.init(2, true, 10, 51);
+        itemStacks.init(0, false, 75, 11);
+        itemStacks.init(1, true, 11, 1);
+        itemStacks.init(2, true, 11, 21);
 
 
         if(o instanceof ScrollRecipe){

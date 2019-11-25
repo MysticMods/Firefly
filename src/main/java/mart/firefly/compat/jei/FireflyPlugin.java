@@ -1,8 +1,9 @@
 package mart.firefly.compat.jei;
 
 import mart.firefly.Firefly;
-import mart.firefly.compat.jei.potion.PotionCraftingCategory;
-import mart.firefly.compat.jei.scroll.ScrollCraftingCategory;
+import mart.firefly.compat.jei.category.JuiceCraftingCategory;
+import mart.firefly.compat.jei.category.PotionCraftingCategory;
+import mart.firefly.compat.jei.category.ScrollCraftingCategory;
 import mart.firefly.setup.ModRecipes;
 import mart.firefly.util.Constants;
 import mezz.jei.api.IModPlugin;
@@ -22,6 +23,7 @@ public class FireflyPlugin implements IModPlugin {
 
         registration.addRecipes(ModRecipes.getPotionRecipes(), Constants.Compat.PotionCategory);
         registration.addRecipes(ModRecipes.getScrollRecipes(), Constants.Compat.ScrollCategory);
+        registration.addRecipes(ModRecipes.getPressRecipes(), Constants.Compat.JuiceCategory);
 
     }
 
@@ -32,6 +34,7 @@ public class FireflyPlugin implements IModPlugin {
 
         registration.addRecipeCategories(new PotionCraftingCategory(helpers.getGuiHelper()));
         registration.addRecipeCategories(new ScrollCraftingCategory(helpers.getGuiHelper()));
+        registration.addRecipeCategories(new JuiceCraftingCategory(helpers.getGuiHelper()));
     }
 
     @Override
