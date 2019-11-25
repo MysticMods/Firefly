@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,42 +22,29 @@ import static mart.firefly.block.CauldronBlock.ON;
 
 public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
 
-    private Map<Biome, FireflyEntity.FireflyType> map = new HashMap<>();
+    private Map<Biome.Category, FireflyEntity.FireflyType> map = new HashMap<>();
 
     private Random rand = new Random();
 
     public FireflyLureTile() {
         super(ModTileEntities.FIREFLY_LURE_TILE);
-        map.put(Biomes.FOREST, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.FLOWER_FOREST, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.BIRCH_FOREST, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.DARK_FOREST, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.TALL_BIRCH_FOREST, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.BIRCH_FOREST_HILLS, FireflyEntity.FireflyType.FOREST);
-        map.put(Biomes.DARK_FOREST_HILLS, FireflyEntity.FireflyType.FOREST);
-
-        map.put(Biomes.MOUNTAINS, FireflyEntity.FireflyType.MOUNTAIN);
-        map.put(Biomes.MOUNTAIN_EDGE, FireflyEntity.FireflyType.MOUNTAIN);
-        map.put(Biomes.SNOWY_TAIGA_MOUNTAINS, FireflyEntity.FireflyType.MOUNTAIN);
-
-        map.put(Biomes.DESERT, FireflyEntity.FireflyType.EARTH);
-        map.put(Biomes.DESERT_HILLS, FireflyEntity.FireflyType.EARTH);
-        map.put(Biomes.DESERT_LAKES, FireflyEntity.FireflyType.EARTH);
-
-        map.put(Biomes.SNOWY_MOUNTAINS, FireflyEntity.FireflyType.ICE);
-        map.put(Biomes.SNOWY_TAIGA, FireflyEntity.FireflyType.ICE);
-        map.put(Biomes.SNOWY_BEACH, FireflyEntity.FireflyType.ICE);
-        map.put(Biomes.SNOWY_TAIGA_HILLS, FireflyEntity.FireflyType.ICE);
-        map.put(Biomes.SNOWY_TUNDRA, FireflyEntity.FireflyType.ICE);
-
-        map.put(Biomes.NETHER, FireflyEntity.FireflyType.DEMON);
-
-        map.put(Biomes.THE_END, FireflyEntity.FireflyType.VOID);
-        map.put(Biomes.END_BARRENS, FireflyEntity.FireflyType.VOID);
-        map.put(Biomes.END_HIGHLANDS, FireflyEntity.FireflyType.VOID);
-        map.put(Biomes.END_MIDLANDS, FireflyEntity.FireflyType.VOID);
-        map.put(Biomes.SMALL_END_ISLANDS, FireflyEntity.FireflyType.VOID);
-
+        map.put(Biome.Category.BEACH, FireflyEntity.FireflyType.EARTH);
+        map.put(Biome.Category.DESERT, FireflyEntity.FireflyType.EARTH);
+        map.put(Biome.Category.EXTREME_HILLS, FireflyEntity.FireflyType.MOUNTAIN);
+        map.put(Biome.Category.FOREST, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.ICY, FireflyEntity.FireflyType.ICE);
+        map.put(Biome.Category.JUNGLE, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.MESA, FireflyEntity.FireflyType.MOUNTAIN);
+        map.put(Biome.Category.MUSHROOM, FireflyEntity.FireflyType.FAIRY);
+        map.put(Biome.Category.NETHER, FireflyEntity.FireflyType.DEMON);
+        map.put(Biome.Category.NONE, FireflyEntity.FireflyType.VOID);
+        map.put(Biome.Category.OCEAN, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.PLAINS, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.RIVER, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.SAVANNA, FireflyEntity.FireflyType.EARTH);
+        map.put(Biome.Category.SWAMP, FireflyEntity.FireflyType.FOREST);
+        map.put(Biome.Category.TAIGA, FireflyEntity.FireflyType.ICE);
+        map.put(Biome.Category.THEEND, FireflyEntity.FireflyType.VOID);
     }
 
     @Override
