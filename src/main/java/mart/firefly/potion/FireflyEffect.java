@@ -43,7 +43,6 @@ public class FireflyEffect extends Effect {
 
     @Override
     public void affectEntity(@Nullable Entity p_180793_1_, @Nullable Entity p_180793_2_, LivingEntity p_180793_3_, int p_180793_4_, double p_180793_5_) {
-        System.out.println("happens");
         super.affectEntity(p_180793_1_, p_180793_2_, p_180793_3_, p_180793_4_, p_180793_5_);
     }
 

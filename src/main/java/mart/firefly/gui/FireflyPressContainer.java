@@ -39,7 +39,6 @@ public class FireflyPressContainer extends BaseContainer {
 
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        System.out.println(index);
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
         if (slot != null && slot.getHasStack()) {

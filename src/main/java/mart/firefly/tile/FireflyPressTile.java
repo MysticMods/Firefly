@@ -14,6 +14,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -45,6 +47,7 @@ public class FireflyPressTile extends TileEntity implements ITickableTileEntity,
             Item out = ModRecipes.getPressOutput(in.getItem());
             if(out != null){
                 h.setStackInSlot(0, new ItemStack(out, amount));
+                world.playSound(null, getPos(), SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 1, 1);
             }
         });
 

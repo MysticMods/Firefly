@@ -187,7 +187,6 @@ public class FireflyEntity extends FlyingEntity {
 
         @Override
         public void tick() {
-            System.out.println(parentEntity.getDataManager().get(ANCHOR));
             if (this.courseChangeCooldown-- <= 0) {
                 if(parentEntity.getDataManager().get(ANCHOR) == BlockPos.ZERO){
                     parentEntity.getDataManager().set(ANCHOR, parentEntity.getPosition());

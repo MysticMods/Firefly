@@ -31,7 +31,6 @@ public class ScrollTablePacket {
 
     public void handle(Supplier<NetworkEvent.Context> context)
     {
-        System.out.println(context.get().getSender());
         context.get().enqueueWork(() -> activatePress(tileEntityPos, context.get().getSender().world));
     }
 

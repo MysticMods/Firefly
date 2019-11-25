@@ -13,6 +13,8 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -41,13 +43,21 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
     public boolean onActivated(PlayerEntity playerIn, Hand hand) {
         if(playerIn.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL){
             world.setBlockState(getPos(), getBlockState().with(ON, true));
+            world.playSound(null, getPos(), SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1f, 1);
+
             return true;
         } else if(playerIn.getHeldItem(hand).getItem() == Items.WATER_BUCKET){
             world.setBlockState(getPos(), getBlockState().with(WATER, true));
+            world.playSound(null, getPos(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1f, 1);
+
             if(!playerIn.isCreative()){
                 playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
             }
             return true;
+        }
+        else if(playerIn.getHeldItem(hand).getItem() == Items.AIR && playerIn.isSneaking()){
+            world.setBlockState(getPos(), getBlockState().with(WATER, false));
+            world.playSound(null, getPos(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1f, 1);
         }
         return false;
     }
@@ -68,6 +78,7 @@ public class CauldronTile extends TileEntity implements ITickableTileEntity {
                                 ItemStack returnStack = handler.insertItem(i, entity.getItem(), false);
                                 if(returnStack == ItemStack.EMPTY){
                                     entity.remove();
+                                    world.playSound(null, getPos(), SoundEvents.ENTITY_GENERIC_SPLASH, SoundCategory.BLOCKS, 0.2f, 1);
 
                                     List<ItemStack> handlerItems = getItemListFromHandler();
                                     for(CauldronRecipe recipe : ModRecipes.getPotionRecipes()){

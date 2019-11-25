@@ -16,6 +16,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -66,6 +68,7 @@ public class ScrollTableTile extends TileEntity implements ITickableTileEntity, 
             ItemStack outputItemStack = new ItemStack(outputItem);
             ScrollItem.setScrollLevel(outputItemStack, level);
             h.setStackInSlot(2, outputItemStack);
+            world.playSound(null, getPos(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.BLOCKS, 1, 1);
         });
 
     }

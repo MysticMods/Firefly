@@ -1,7 +1,6 @@
 package mart.firefly.network;
 
 import mart.firefly.tile.FireflyPressTile;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +31,6 @@ public class PressActivatePacket {
 
     public void handle(Supplier<NetworkEvent.Context> context)
     {
-        System.out.println(context.get().getSender());
         context.get().enqueueWork(() -> activatePress(tileEntityPos, context.get().getSender().world));
     }
 
