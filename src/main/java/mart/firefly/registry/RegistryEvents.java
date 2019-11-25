@@ -64,7 +64,7 @@ public class RegistryEvents {
 
     @SubscribeEvent
     public static void onItemRegistry(final RegistryEvent.Register<Item> event){
-        event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(Firefly.GROUP)).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_jar")));
+        event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(Firefly.GROUP)).setRegistryName(new ResourceLocation(Firefly.MODID, "firefly_jar")));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_fairy", FireflyEntity.FireflyType.FAIRY));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_forest", FireflyEntity.FireflyType.FOREST));
         event.getRegistry().register(new FireflyJarItem("firefly_jar_mountain", FireflyEntity.FireflyType.MOUNTAIN));
