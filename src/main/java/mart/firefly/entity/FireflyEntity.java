@@ -49,7 +49,7 @@ public class FireflyEntity extends FlyingEntity {
     protected void registerData() {
         super.registerData();
         this.dataManager.register(TYPE, FireflyType.FOREST.name());
-        this.dataManager.register(ANCHOR, BlockPos.ZERO);
+        this.dataManager.register(ANCHOR, getPosition());
     }
 
     @Override

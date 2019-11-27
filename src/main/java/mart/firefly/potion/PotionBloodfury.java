@@ -7,7 +7,7 @@ import net.minecraft.potion.EffectInstance;
 public class PotionBloodfury extends PotionFireflyMagic {
 
     public PotionBloodfury() {
-        super("potion_bloodfury", new EffectInstance(ModEffects.EFFECT_BLOODFURY, 2400));
+        super("potion_bloodfury", new EffectInstance(ModEffects.EFFECT_BLOODFURY, 5 * 60 * 20));
     }
 
 }

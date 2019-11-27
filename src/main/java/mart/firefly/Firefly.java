@@ -6,10 +6,10 @@ import mart.firefly.proxy.ClientProxy;
 import mart.firefly.proxy.IModProxy;
 import mart.firefly.proxy.ServerProxy;
 import mart.firefly.setup.ModBlocks;
+import mart.firefly.setup.ModItems;
 import mart.firefly.setup.ModSetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,7 +29,7 @@ public class Firefly {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return new ItemStack(ModItems.FIREFLY_JAR);
         }
     };
 
