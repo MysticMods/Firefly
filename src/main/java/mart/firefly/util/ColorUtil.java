@@ -14,7 +14,7 @@ public class ColorUtil {
         fireflyColors.put(FireflyEntity.FireflyType.MOUNTAIN, new RgbColor(193, 155, 82));
         fireflyColors.put(FireflyEntity.FireflyType.DEMON, new RgbColor(201, 60, 55));
         fireflyColors.put(FireflyEntity.FireflyType.ICE, new RgbColor(79, 255, 255));
-        fireflyColors.put(FireflyEntity.FireflyType.VOID, new RgbColor(15, 10, 2));
+        fireflyColors.put(FireflyEntity.FireflyType.VOID, new RgbColor(139,0,139));
         fireflyColors.put(FireflyEntity.FireflyType.EARTH, new RgbColor(88, 83, 75));
     }
 }

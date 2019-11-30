@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 public class RenderFirefly extends EntityRenderer<FireflyEntity> {
 
 
+
     public RenderFirefly(EntityRendererManager rendererManager) {
         super(rendererManager);
     }

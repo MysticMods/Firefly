@@ -60,6 +60,7 @@ public class RegistryEvents {
         blocks.add(ModBlocks.SCROLL_TABLE.get());
         blocks.add(ModBlocks.CAULDRON.get());
         blocks.add(ModBlocks.FIREFLY_LURE.get());
+        blocks.add(ModBlocks.FIREFLY_JAR.get());
     }
 
     @SubscribeEvent
