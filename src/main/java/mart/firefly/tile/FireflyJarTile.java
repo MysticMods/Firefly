@@ -3,12 +3,11 @@ package mart.firefly.tile;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.setup.ModTileEntities;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class FireflyJarTile extends TileEntity implements ITickableTileEntity {
+public class FireflyJarTile extends TileEntity{
 
-    private FireflyEntity.FireflyType type = null;
+    private FireflyEntity.FireflyType type;
     private int coordTex = 240;
     private boolean up = false;
 
@@ -17,20 +16,19 @@ public class FireflyJarTile extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public CompoundNBT write(CompoundNBT compound) {
-        compound.putString("fireflyType", type.toString());
+        if(type !=  null){
+            compound.putString("fireflyType", type.toString());
+        }
         return super.write(compound);
     }
 
     @Override
     public void read(CompoundNBT compound) {
         System.out.println(compound.getString("fireflyType"));
-        this.type = FireflyEntity.FireflyType.valueOf(compound.getString("fireflyType"));
+        if(type == null){
+            this.type = FireflyEntity.FireflyType.valueOf(compound.getString("fireflyType"));
+        }
         super.read(compound);
     }
 

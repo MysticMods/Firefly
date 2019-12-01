@@ -30,6 +30,11 @@ public class FireflyJarTileRenderer extends TileEntityRenderer<FireflyJarTile> {
     public void render(FireflyJarTile entity, double x, double y, double z, float partialTicks, int destroyStage) {
         super.render(entity, x, y, z, partialTicks, destroyStage);
 
+        if(entity.getFireflyType() == null){
+            entity.markDirty();
+            return;
+        }
+
         if(entity.isUp()){
             entity.setCoordTex(entity.getCoordTex() + 1);
             if(entity.getCoordTex() >= 240){

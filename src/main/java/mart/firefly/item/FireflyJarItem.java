@@ -41,6 +41,7 @@ public class FireflyJarItem extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         if(context.getPlayer().isSneaking()){
+            onItemRightClick(context.getWorld(), context.getPlayer(), context.getHand());
             return ActionResultType.FAIL;
         }
         ActionResultType actionresulttype = this.tryPlace(new BlockItemUseContext(context));
@@ -79,6 +80,7 @@ public class FireflyJarItem extends Item {
                 FireflyJarTile  tile = (FireflyJarTile) world.getTileEntity(blockpos);
                 if (tile != null) {
                     tile.setFireflyType(type);
+                    tile.markDirty();
                 }
 
                 return ActionResultType.SUCCESS;
