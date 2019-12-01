@@ -192,13 +192,14 @@ public class FireflyEntity extends FlyingEntity {
                     parentEntity.getDataManager().set(ANCHOR, parentEntity.getPosition());
                 }
 
-                this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 100;
+                this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 50;
                 Random random = new Random();
-                double d0 = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
-                double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
-                double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16F);
+                double d0 = this.parentEntity.posX + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
+                double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
+                double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
                 BlockPos pos = new BlockPos(d0, d1, d2);
-                if(pos.withinDistance(new Vec3i(parentEntity.getDataManager().get(ANCHOR).getX(), parentEntity.getDataManager().get(ANCHOR).getY(), parentEntity.getDataManager().get(ANCHOR).getZ()), 5)){
+                BlockPos anchorPos = parentEntity.dataManager.get(ANCHOR);
+                if(pos.withinDistance(new Vec3i(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ()), 5)){
                     this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 0.01D);
                 }
             }

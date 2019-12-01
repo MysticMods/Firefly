@@ -11,6 +11,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 
 import java.util.HashMap;
@@ -66,6 +67,7 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
 
                 fly.getDataManager().set(FireflyEntity.TYPE, type.name());
                 fly.setPosition(this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5);
+                fly.getDataManager().set(FireflyEntity.ANCHOR, new BlockPos(this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5));
                 world.addEntity(fly);
             }
         }
