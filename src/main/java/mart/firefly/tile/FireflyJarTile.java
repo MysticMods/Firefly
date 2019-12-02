@@ -3,7 +3,11 @@ package mart.firefly.tile;
 import mart.firefly.entity.FireflyEntity;
 import mart.firefly.setup.ModTileEntities;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+
+import javax.annotation.Nullable;
 
 public class FireflyJarTile extends TileEntity{
 
@@ -30,6 +34,22 @@ public class FireflyJarTile extends TileEntity{
             this.type = FireflyEntity.FireflyType.valueOf(compound.getString("fireflyType"));
         }
         super.read(compound);
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 9, getUpdateTag());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        read(pkt.getNbtCompound());
+    }
+
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return write(super.getUpdateTag());
     }
 
     public FireflyEntity.FireflyType getFireflyType() {

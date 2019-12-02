@@ -21,7 +21,7 @@ public class ModBlocks {
     public static RegistryObject<ScrollTableBlock> SCROLL_TABLE = Firefly.REGISTRY.registerBlock("scroll_table", Firefly.REGISTRY.block(ScrollTableBlock::new, () -> Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F)), SIG);
     public static RegistryObject<CauldronBlock> CAULDRON = Firefly.REGISTRY.registerBlock("cauldron", Firefly.REGISTRY.block(CauldronBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5F)), SIG);
     public static RegistryObject<FireflyLureBlock> FIREFLY_LURE = Firefly.REGISTRY.registerBlock("firefly_lure", Firefly.REGISTRY.block(FireflyLureBlock::new, () -> Block.Properties.create(Material.WOOD).hardnessAndResistance(2.5F)), SIG);
-    public static RegistryObject<FireflyJarBlock> FIREFLY_JAR= Firefly.REGISTRY.registerBlock("firefly_jar_block", Firefly.REGISTRY.block(FireflyJarBlock::new, () -> Block.Properties.create(Material.GLASS).hardnessAndResistance(1F).sound(SoundType.GLASS).lightValue(10)), SIG);
+    public static RegistryObject<FireflyJarBlock> FIREFLY_JAR= Firefly.REGISTRY.registerBlock("firefly_jar_block", Firefly.REGISTRY.block(FireflyJarBlock::new, () -> Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(11)), SIG);
 
     public static void load() {
     }
