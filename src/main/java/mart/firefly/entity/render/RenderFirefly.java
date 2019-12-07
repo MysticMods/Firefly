@@ -48,7 +48,7 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
         GlStateManager.rotatef(180 - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 
-        bindTexture(new ResourceLocation(Firefly.MODID, "textures/particle/particle_glow.png"));
+        bindTexture(new ResourceLocation(Firefly.MODID, "textures/particles/particle_glow.png"));
 
         GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, 240.0F, 240.0F);
 

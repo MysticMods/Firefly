@@ -62,7 +62,7 @@ public class FireflyJarTileRenderer extends TileEntityRenderer<FireflyJarTile> {
         GlStateManager.rotatef(180 - manager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotatef(-manager.playerViewX, 1.0F, 0.0F, 0.0F);
 
-        bindTexture(new ResourceLocation(Firefly.MODID, "textures/particle/particle_glow.png"));
+        bindTexture(new ResourceLocation(Firefly.MODID, "textures/particles/particle_glow.png"));
 
         GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, entity.getCoordTex(), entity.getCoordTex());
 

@@ -25,13 +25,11 @@ public class ClientRegistryEvents
         RenderingRegistry.registerEntityRenderingHandler(FireflyEntity.class, RenderFirefly::new);
 
         ClientRegistry.bindTileEntitySpecialRenderer(FireflyJarTile.class, new FireflyJarTileRenderer());
-    }
 
-    @SubscribeEvent
-    public static void setupClient(final FMLClientSetupEvent event){
         ScreenManager.registerFactory(ModTileEntities.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
         ScreenManager.registerFactory(ModTileEntities.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);
     }
+
 
 
 }
