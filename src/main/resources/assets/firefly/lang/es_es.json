@@ -1,0 +1,45 @@
+{
+    "itemGroup.firefly": "Firefly Magic",
+
+    "item.firefly.firefly_jar": "Bote para luciérnaga",
+    "item.firefly.firefly_jar_forest": "Luciérnaga del bosque",
+    "item.firefly.firefly_jar_fairy": "Luciérnaga hada",
+    "item.firefly.firefly_jar_mountain": "Luciérnaga de montaña",
+    "item.firefly.firefly_jar_void": "Luciérnaga del vacío",
+    "item.firefly.firefly_jar_demon": "Luciérnaga demonio",
+    "item.firefly.firefly_jar_ice": "Luciérnaga de hielo",
+    "item.firefly.firefly_jar_earth": "Luciérnaga de tierra",
+
+    "item.firefly.firefly_juice_forest": "Zumo de luciérnaga de bosque",
+    "item.firefly.firefly_juice_fairy": "Zumo de luciérnaga hada",
+    "item.firefly.firefly_juice_mountain": "Zumo de luciérnaga de montaña",
+    "item.firefly.firefly_juice_void": "Zumo de luciérnaga de vacío",
+    "item.firefly.firefly_juice_demon": "Zumo de luciérnaga demonio",
+    "item.firefly.firefly_juice_ice": "Zumo de luciérnaga de hielo",
+    "item.firefly.firefly_juice_earth": "Zumo de luciérnaga de tierra",
+
+    "item.firefly.scroll_druid": "Pergamino de druida",
+    "item.firefly.scroll_miner": "Pergamino de minería",
+    "item.firefly.scroll_sage": "Pergamino de erudición",
+    "item.firefly.scroll_thunder": "Pergamino de trueno",
+    "item.firefly.scroll_demon": "Pergamino de demonio",
+
+    "item.firefly.potion_bloodfury": "Poción de furia sangrienta",
+    "item.firefly.potion_dragons_wrath": "Poción de ira del dragón",
+    "item.firefly.potion_druids_delight": "Poción de delicia de druida",
+    "item.firefly.potion_liquid_luck": "Poción de suerte líquida",
+    "item.firefly.potion_mandragora": "Poción de mandrágora",
+    "item.firefly.potion_wisdom_draught": "Poción de ráfaga de sabiduría",
+
+    "block.firefly.firefly_press": "Exprimidor de luciérnagas",
+    "block.firefly.scroll_table": "Mesa de pergaminos",
+    "block.firefly.cauldron": "Caldero de pociones",
+    "block.firefly.firefly_lure": "Cebo para luciérnagas",
+
+    "effect_bloodfury": "Furia sangrienta",
+    "effect_dragons_wrath": "Ira del dragón",
+    "effect_druids_delight": "Delicia de druida",
+    "effect_liquid_luck": "Suerte líquida",
+    "effect_mandragora": "Mandrágora",
+    "effect_wisdom_draught": "Ráfaga de sabiduría"
+}
