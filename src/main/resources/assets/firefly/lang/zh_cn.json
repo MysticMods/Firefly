@@ -1,0 +1,77 @@
+{
+    "itemGroup.firefly": "萤火虫魔法",
+
+    "item.firefly.firefly_jar": "萤火虫罐子",
+    "item.firefly.firefly_jar_forest": "森林萤火虫",
+    "item.firefly.firefly_jar_fairy": "仙子萤火虫",
+    "item.firefly.firefly_jar_mountain": "山峦萤火虫",
+    "item.firefly.firefly_jar_void": "虚空萤火虫",
+    "item.firefly.firefly_jar_demon": "恶魔萤火虫",
+    "item.firefly.firefly_jar_ice": "冰雪萤火虫",
+    "item.firefly.firefly_jar_earth": "大地萤火虫",
+
+    "item.firefly.firefly_juice_forest": "森林萤火虫汁液",
+    "item.firefly.firefly_juice_fairy": "仙子萤火虫汁液",
+    "item.firefly.firefly_juice_mountain": "山峦萤火虫汁液",
+    "item.firefly.firefly_juice_void": "虚空萤火虫汁液",
+    "item.firefly.firefly_juice_demon": "恶魔萤火虫汁液",
+    "item.firefly.firefly_juice_ice": "冰雪萤火虫汁液",
+    "item.firefly.firefly_juice_earth": "大地萤火虫汁液",
+
+    "item.firefly.scroll_druid": "德鲁伊卷轴",
+    "item.firefly.scroll_miner": "矿工卷轴",
+    "item.firefly.scroll_sage": "贤者卷轴",
+    "item.firefly.scroll_thunder": "雷霆卷轴",
+    "item.firefly.scroll_demon": "恶魔卷轴",
+
+    "item.firefly.potion_bloodfury": "血之狂怒药剂",
+    "item.firefly.potion_dragons_wrath": "龙之震怒药剂",
+    "item.firefly.potion_druids_delight": "德鲁伊之欣悦药剂",
+    "item.firefly.potion_liquid_luck": "超好运药剂",
+    "item.firefly.potion_mandragora": "曼陀罗草药剂",
+    "item.firefly.potion_wisdom_draught": "聪明药药剂",
+
+    "block.firefly.firefly_press": "萤火虫挤压器",
+    "block.firefly.scroll_table": "卷轴台桌",
+    "block.firefly.cauldron": "炼药大锅",
+    "block.firefly.firefly_lure": "萤火虫诱饵",
+
+    "effect_bloodfury": "血之狂怒",
+    "effect_dragons_wrath": "龙之震怒",
+    "effect_druids_delight": "德鲁伊之欣悦",
+    "effect_liquid_luck": "超好运",
+    "effect_mandragora": "曼陀罗草",
+    "effect_wisdom_draught": "聪明药",
+
+    "block.firefly.firefly_jar_block": "萤火虫罐子",
+
+    "entity.firefly.firefly": "萤火虫",
+
+    "item.minecraft.potion.effect.potion_druids_delight": "德鲁伊之欣悦药水",
+    "item.minecraft.potion.effect.potion_liquid_luck": "超好运药水",
+    "item.minecraft.potion.effect.potion_mandragora": "曼陀罗草药水",
+    "item.minecraft.potion.effect.potion_wisdom_draught": "聪明药药水",
+    "item.minecraft.potion.effect.potion_dragons_wrath": "龙之震怒药水",
+    "item.minecraft.potion.effect.potion_bloodfury": "血之狂怒药水",
+
+    "item.minecraft.splash_potion.effect.potion_druids_delight": "喷溅型德鲁伊之欣悦药水",
+    "item.minecraft.splash_potion.effect.potion_liquid_luck": "喷溅型超好运药水",
+    "item.minecraft.splash_potion.effect.potion_mandragora": "喷溅型曼陀罗草药水",
+    "item.minecraft.splash_potion.effect.potion_wisdom_draught": "喷溅型聪明药药水",
+    "item.minecraft.splash_potion.effect.potion_dragons_wrath": "喷溅型龙之震怒药水",
+    "item.minecraft.splash_potion.effect.potion_bloodfury": "喷溅型血之狂怒药水",
+
+    "item.minecraft.lingering_potion.effect.potion_druids_delight": "滞留型德鲁伊之欣悦药水",
+    "item.minecraft.lingering_potion.effect.potion_liquid_luck": "滞留型超好运药水",
+    "item.minecraft.lingering_potion.effect.potion_mandragora": "滞留型曼陀罗草药水",
+    "item.minecraft.lingering_potion.effect.potion_wisdom_draught": "滞留型聪明药药水",
+    "item.minecraft.lingering_potion.effect.potion_dragons_wrath": "滞留型龙之震怒药水",
+    "item.minecraft.lingering_potion.effect.potion_bloodfury": "滞留型血之狂怒药水",
+
+    "item.minecraft.tipped_arrow.effect.potion_druids_delight": "德鲁伊之欣悦药水之箭",
+    "item.minecraft.tipped_arrow.effect.potion_liquid_luck": "超好运药水之箭",
+    "item.minecraft.tipped_arrow.effect.potion_mandragora": "曼陀罗草药水之箭",
+    "item.minecraft.tipped_arrow.effect.potion_wisdom_draught": "聪明药药水之箭",
+    "item.minecraft.tipped_arrow.effect.potion_dragons_wrath": "龙之震怒药水之箭",
+    "item.minecraft.tipped_arrow.effect.potion_bloodfury": "血之狂怒药水之箭"
+}
