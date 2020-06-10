@@ -187,9 +187,9 @@ public class FireflyEntity extends FlyingEntity {
 
                 this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 50;
                 Random random = new Random();
-                double d0 = this.parentEntity.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
-                double d1 = this.parentEntity.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
-                double d2 = this.parentEntity.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
+                double d0 = this.parentEntity.getPosX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
+                double d1 = this.parentEntity.getPosY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
+                double d2 = this.parentEntity.getPosZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 5F);
                 BlockPos pos = new BlockPos(d0, d1, d2);
                 BlockPos anchorPos = parentEntity.dataManager.get(ANCHOR);
                 if(pos.withinDistance(new Vec3i(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ()), 5)){
@@ -197,7 +197,7 @@ public class FireflyEntity extends FlyingEntity {
                 }
             }
 
-            Vec3d vec3d = new Vec3d(this.posX - this.parentEntity.getX(), this.posY - this.parentEntity.getY(), this.posZ - this.parentEntity.getZ());
+            Vec3d vec3d = new Vec3d(this.posX - this.parentEntity.getPosX(), this.posY - this.parentEntity.getPosY(), this.posZ - this.parentEntity.getPosZ());
             double d01 = vec3d.length();
             vec3d = vec3d.normalize();
             if (this.func_220673_a(vec3d, MathHelper.ceil(d01))) {
@@ -213,7 +213,7 @@ public class FireflyEntity extends FlyingEntity {
 
             for(int i = 1; i < p_220673_2_; ++i) {
                 axisalignedbb = axisalignedbb.offset(p_220673_1_);
-                if (!this.parentEntity.world.doesNotCollide(this.parentEntity, axisalignedbb)) {
+                if (!this.parentEntity.world.hasNoCollisions(this.parentEntity, axisalignedbb)) {
                     return false;
                 }
             }

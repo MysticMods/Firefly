@@ -9,6 +9,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
@@ -39,8 +40,8 @@ public class DruidScrollItem extends ScrollItem {
                     world.setBlockState(pos, blockChances.floorEntry(rand.nextInt(100) + 1).getValue().getDefaultState());
                     if(world.getBlockState(pos).getBlock() == Blocks.OAK_SAPLING){
                         SaplingBlock sapling = (SaplingBlock) Blocks.OAK_SAPLING;
-                        sapling.grow(world, pos, world.getBlockState(pos), rand);
-                        sapling.grow(world, pos, world.getBlockState(pos), rand);
+                        sapling.grow((ServerWorld) world, rand, pos, world.getBlockState(pos));
+                        sapling.grow((ServerWorld) world, rand, pos, world.getBlockState(pos));
                     }
                 }
             }

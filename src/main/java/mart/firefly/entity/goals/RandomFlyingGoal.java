@@ -24,9 +24,9 @@ public class RandomFlyingGoal extends Goal {
         if (!movementcontroller.isUpdating()) {
             return true;
         } else {
-            double d0 = movementcontroller.getX() - this.parentEntity.getX();
-            double d1 = movementcontroller.getY() - this.parentEntity.getY();
-            double d2 = movementcontroller.getZ() - this.parentEntity.getZ();
+            double d0 = movementcontroller.getX() - this.parentEntity.getPosX();
+            double d1 = movementcontroller.getY() - this.parentEntity.getPosY();
+            double d2 = movementcontroller.getZ() - this.parentEntity.getPosZ();
             double d3 = d0 * d0 + d1 * d1 + d2 * d2;
             return d3 < 1.0D || d3 > 3600.0D;
         }
@@ -46,9 +46,9 @@ public class RandomFlyingGoal extends Goal {
     @Override
     public void startExecuting() {
         Random random = this.parentEntity.getRNG();
-        double d0 = this.parentEntity.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d1 = this.parentEntity.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-        double d2 = this.parentEntity.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d0 = this.parentEntity.getPosX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d1 = this.parentEntity.getPosY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+        double d2 = this.parentEntity.getPosZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
         this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1D);
     }
 }

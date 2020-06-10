@@ -6,6 +6,7 @@ import mart.firefly.entity.render.RenderFirefly;
 import mart.firefly.gui.FireflyPressScreen;
 import mart.firefly.gui.ScrollTableScreen;
 import mart.firefly.render.FireflyJarTileRenderer;
+import mart.firefly.setup.ModEntities;
 import mart.firefly.setup.ModTileEntities;
 import mart.firefly.tile.FireflyJarTile;
 import net.minecraft.client.gui.ScreenManager;
@@ -25,9 +26,9 @@ public class ClientRegistryEvents
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event)
     {
-        RenderingRegistry.registerEntityRenderingHandler(FireflyEntity.class, RenderFirefly::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIREFLY, RenderFirefly::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.FIREFLY_JAR_BLOCK_TILE, FireflyJarTileRenderer::new);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(FireflyJarTile.class, new FireflyJarTileRenderer());
 
         ScreenManager.registerFactory(ModTileEntities.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
         ScreenManager.registerFactory(ModTileEntities.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);

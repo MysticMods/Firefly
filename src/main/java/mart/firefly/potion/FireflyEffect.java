@@ -32,9 +32,9 @@ public class FireflyEffect extends Effect {
 
                 Entity entity = FireflyUtil.getRandomPassiveMob(entityLivingBaseIn.world);
                 entity.setPosition(
-                        entityLivingBaseIn.posX + (Util.rand.nextInt(10) - 5),
-                        entityLivingBaseIn.posY,
-                        entityLivingBaseIn.posZ + (Util.rand.nextInt(10) - 5)
+                        entityLivingBaseIn.getPosX() + (Util.rand.nextInt(10) - 5),
+                        entityLivingBaseIn.getPosY(),
+                        entityLivingBaseIn.getPosZ() + (Util.rand.nextInt(10) - 5)
                 );
                 entityLivingBaseIn.world.addEntity(entity);
             }

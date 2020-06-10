@@ -66,7 +66,6 @@ public class FireflyJarItem extends Item {
                 Block block = blockstate1.getBlock();
                 if (block == blockstate.getBlock()) {
                     blockstate1 = this.func_219985_a(blockpos, world, itemstack, blockstate1);
-                    //this.onBlockPlaced(blockpos, world, playerentity, itemstack, blockstate1);
                     block.onBlockPlacedBy(world, blockpos, blockstate1, playerentity, itemstack);
                     if (playerentity instanceof ServerPlayerEntity) {
                         CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerentity, blockpos, itemstack);
@@ -95,10 +94,10 @@ public class FireflyJarItem extends Item {
     }
 
 
-    protected boolean canPlace(BlockItemUseContext p_195944_1_, BlockState p_195944_2_) {
-        PlayerEntity playerentity = p_195944_1_.getPlayer();
+    protected boolean canPlace(BlockItemUseContext context, BlockState state) {
+        PlayerEntity playerentity = context.getPlayer();
         ISelectionContext iselectioncontext = playerentity == null ? ISelectionContext.dummy() : ISelectionContext.forEntity(playerentity);
-        return (p_195944_2_.isValidPosition(p_195944_1_.getWorld(), p_195944_1_.getPos())) && p_195944_1_.getWorld().func_217350_a(p_195944_2_, p_195944_1_.getPos(), iselectioncontext);
+        return (state.isValidPosition(context.getWorld(), context.getPos())) && context.getWorld().func_226663_a_(state, context.getPos(), iselectioncontext);
     }
 
     protected boolean placeBlock(BlockItemUseContext context, BlockState state) {

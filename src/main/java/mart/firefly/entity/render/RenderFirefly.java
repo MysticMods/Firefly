@@ -47,15 +47,15 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
                 .color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, 1f)
                 .tex(sprite.getMinU(), sprite.getMinV()).lightmap(240, 240).normal(1, 0, 0).endVertex();
 
-        builder.pos(ms.getLast().getMatrix(), -0.5f / 4, 0.0f, 0.0f)
+        builder.pos(ms.getLast().getMatrix(), 0.5f/ 4, 0.0f, 0.0f)
                 .color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, 1f)
                 .tex(sprite.getMaxU(), sprite.getMinV()).lightmap(240, 240).normal(1, 0, 0).endVertex();
 
-        builder.pos(ms.getLast().getMatrix(), -0.5f / 4, 0.0f, 0.0f)
+        builder.pos(ms.getLast().getMatrix(), 0.5f / 4, 0.0f, 0.0f)
                 .color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, 1f)
                 .tex(sprite.getMaxU(), sprite.getMaxV()).lightmap(240, 240).normal(1, 0, 0).endVertex();
 
-        builder.pos(ms.getLast().getMatrix(), -0.5f / 4, 0.0f, 0.0f)
+        builder.pos(ms.getLast().getMatrix(), -0.5f / 4, 1.0f / 4, 0.0f)
                 .color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, 1f)
                 .tex(sprite.getMinU(), sprite.getMaxV()).lightmap(240, 240).normal(1, 0, 0).endVertex();
 
@@ -77,7 +77,7 @@ public class RenderFirefly extends EntityRenderer<FireflyEntity> {
 //        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 //        buffer.pos(-0.5D / 4, 0.0D, 0.0D).tex(0D, 0.0D).endVertex();
 //        buffer.pos(0.5D / 4, 0.0D, 0.0D).tex(1D, 0.0D).endVertex();
-//        buffer.pos(0.5D / 4, 1.0D / 4, 0.0D).tex(1D, 1D).endVertex();
+//        buffer.pos(0.5D / 4, 0.0D, 0.0D).tex(1D, 1D).endVertex();
 //        buffer.pos(-0.5D / 4, 1.0D / 4, 0.0D).tex(0.0D, 1D).endVertex();
 //        GLX.lastBrightnessX = 240;
 //        GLX.lastBrightnessY = 240;
