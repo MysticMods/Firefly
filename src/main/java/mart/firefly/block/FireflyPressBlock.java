@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -27,20 +28,15 @@ public class FireflyPressBlock extends Block implements ITile<FireflyPressTile> 
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote){
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof INamedContainerProvider){
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
-        return true;
-    }
-
-    @Override
-    public boolean isSolid(BlockState state) {
-        return false;
+        return ActionResultType.SUCCESS;
     }
 
     @Override

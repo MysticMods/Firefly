@@ -3,16 +3,15 @@ package mart.firefly.block;
 import mart.firefly.setup.ModItems;
 import mart.firefly.tile.FireflyJarTile;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -28,14 +27,10 @@ public class FireflyJarBlock extends Block implements ITile<FireflyJarTile> {
     }
 
     @Override
-    public int getLightValue(BlockState state, IEnviromentBlockReader world, BlockPos pos) {
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
         return 10;
     }
 
-    @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
 
     @Override
     public boolean hasTileEntity(BlockState state) {
@@ -51,12 +46,6 @@ public class FireflyJarBlock extends Block implements ITile<FireflyJarTile> {
     @Override
     public Supplier<FireflyJarTile> getTile() {
         return FireflyJarTile::new;
-    }
-
-
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override

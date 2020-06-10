@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -29,13 +29,9 @@ public class FireflyLureBlock extends Block implements ITile<FireflyLureTile> {
         setDefaultState(this.getStateContainer().getBaseState().with(ON, Boolean.FALSE));
     }
 
-    @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         return ((FireflyLureTile)world.getTileEntity(pos)).onActivated(player, hand);
     }
 
@@ -58,11 +54,6 @@ public class FireflyLureBlock extends Block implements ITile<FireflyLureTile> {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(ON);
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override

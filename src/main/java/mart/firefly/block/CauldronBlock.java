@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -26,8 +26,8 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
     public static final BooleanProperty ON = BooleanProperty.create("on");
     public static final BooleanProperty WATER = BooleanProperty.create("water");
 
-    protected static final VoxelShape INSIDE = Block.makeCuboidShape(3.0D, 4.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-    protected static final VoxelShape WALLS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), INSIDE, IBooleanFunction.ONLY_FIRST);
+    private static final VoxelShape INSIDE = Block.makeCuboidShape(3.0D, 4.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+    private static final VoxelShape WALLS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), INSIDE, IBooleanFunction.ONLY_FIRST);
 
     public CauldronBlock(Properties properties) {
         super(properties);
@@ -35,13 +35,12 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
     }
 
     @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        return ((CauldronTile)world.getTileEntity(pos)).onActivated(player, hand);
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        if(((CauldronTile)world.getTileEntity(pos)).onActivated(player, hand)){
+            return ActionResultType.SUCCESS;
+        } else {
+            return ActionResultType.FAIL;
+        }
     }
 
     @Override
@@ -65,10 +64,6 @@ public class CauldronBlock extends Block implements ITile<CauldronTile> {
         builder.add(ON).add(WATER);
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
 
     @Override
     public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {

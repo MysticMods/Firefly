@@ -9,7 +9,10 @@ import mart.firefly.render.FireflyJarTileRenderer;
 import mart.firefly.setup.ModTileEntities;
 import mart.firefly.tile.FireflyJarTile;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -28,6 +31,15 @@ public class ClientRegistryEvents
 
         ScreenManager.registerFactory(ModTileEntities.FIREFLY_PRESS_CONTAINER, FireflyPressScreen::new);
         ScreenManager.registerFactory(ModTileEntities.SCROLL_TABLE_CONTAINER, ScrollTableScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void onParticleTextureStitch(TextureStitchEvent.Pre event){
+        if(!event.getMap().getTextureLocation().equals(AtlasTexture.LOCATION_PARTICLES_TEXTURE)){
+            return;
+        }
+
+        event.addSprite(new ResourceLocation(Firefly.MODID, "particle/particle_glow.png"));
     }
 
 

@@ -3,6 +3,7 @@ package mart.firefly.block;
 import epicsquid.mysticallib.util.Util;
 import mart.firefly.tile.ScrollTableTile;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +13,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -35,20 +36,15 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
     }
 
     @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote){
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof INamedContainerProvider){
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -78,10 +74,6 @@ public class ScrollTableBlock extends Block implements ITile<ScrollTableTile> {
         builder.add(FACING);
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
 
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {

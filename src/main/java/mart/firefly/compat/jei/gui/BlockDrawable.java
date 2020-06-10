@@ -27,7 +27,7 @@ public class BlockDrawable implements IDrawable {
     @Override
     public void draw(int xOffset, int yOffset) {
 
-        RenderHelper.enableGUIStandardItemLighting();
+        //RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.color4f(1, 1, 1, 1);
         GlStateManager.enableDepthTest();
         GlStateManager.pushMatrix();

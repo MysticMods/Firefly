@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -73,14 +74,14 @@ public class FireflyLureTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
-    public boolean onActivated(PlayerEntity playerIn, Hand hand) {
+    public ActionResultType onActivated(PlayerEntity playerIn, Hand hand) {
         if(playerIn.getHeldItem(hand).getItem() == Items.WATER_BUCKET){
             world.setBlockState(getPos(), getBlockState().with(ON, true));
             if(!playerIn.isCreative()){
                 playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
             }
-            return true;
+            return ActionResultType.SUCCESS;
         }
-        return false;
+        return ActionResultType.FAIL;
     }
 }
